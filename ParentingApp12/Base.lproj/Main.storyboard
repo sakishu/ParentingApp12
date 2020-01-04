@@ -406,10 +406,6 @@
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="BJN-Bi-h8B" id="r2u-tS-eGw"/>
-                                            <outlet property="delegate" destination="BJN-Bi-h8B" id="znT-jh-R2o"/>
-                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -446,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R0C-tB-s59" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077" y="-352"/>
+            <point key="canvasLocation" x="1035" y="-408"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JCz-L8-7hQ">

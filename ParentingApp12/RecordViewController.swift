@@ -42,6 +42,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let record = Record()
         record.title = "起きる"
         record.nowTime = getTime()
+        record.buttonImage = UIImage(named: "smile")
+        record.save()
         
         //インスタンス取得
         let realm = try! Realm()
@@ -54,22 +56,92 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     @IBAction func sleepButton(_ sender: Any) {
+        
+        let record = Record()
+        record.title = "寝る"
+        record.nowTime = getTime()
+        record.buttonImage = UIImage(named: "sleep")
+        record.save()
+        
+        //インスタンス取得
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(record)
+        }
+        self.table.reloadData()
     
     }
     
     @IBAction func peepButton(_ sender: Any) {
+        
+        let record = Record()
+        record.title = "うんち"
+        record.nowTime = getTime()
+        record.buttonImage = UIImage(named: "peep")
+        record.save()
+        
+        //インスタンス取得
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(record)
+        }
+        self.table.reloadData()
     
     }
     
     @IBAction func urineButton(_ sender: Any) {
+        
+        let record = Record()
+        record.title = "おしっこ"
+        record.nowTime = getTime()
+        record.buttonImage = UIImage(named: "urine")
+        record.save()
+        
+        //インスタンス取得
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(record)
+        }
+        self.table.reloadData()
     
     }
     
     @IBAction func milkButton(_ sender: Any) {
+        
+        let record = Record()
+        record.title = "ミルク"
+        record.nowTime = getTime()
+        record.buttonImage = UIImage(named: "milk")
+        record.save()
+        
+        //インスタンス取得
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(record)
+        }
+        self.table.reloadData()
     
     }
     
     @IBAction func feedButton(_ sender: Any) {
+        
+        let record = Record()
+        record.title = "授乳"
+        record.nowTime = getTime()
+        record.buttonImage = UIImage(named: "breastfeed")
+        record.save()
+        
+        //インスタンス取得
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(record)
+        }
+        self.table.reloadData()
     
     }
     
@@ -96,11 +168,11 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let object = todoItems[indexPath.row]
         cell.textLabel?.text = object.title
         cell.textLabel?.text = object.nowTime
-        cell.imageView?.image = UIImagePNGRepresentation(image)
-        }
+        cell.imageView?.image = UIImage()
         
         return cell
-    }
+        }
+    
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -152,4 +224,5 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         return f.string(from: now)
     }
     
+
 }
