@@ -836,8 +836,13 @@ case "$COMMAND" in
         exit 0
         ;;
 
-    "test-swiftpm")
-        xcrun swift test --configuration $(echo $CONFIGURATION | tr "[:upper:]" "[:lower:]")
+    test-swiftpm*)
+        SANITIZER=$(echo $COMMAND | cut -d - -f 3)
+        if [ -n "$SANITIZER" ]; then
+            SANITIZER="--sanitize $SANITIZER"
+            export ASAN_OPTIONS='check_initialization_order=true:detect_stack_use_after_return=true'
+        fi
+        xcrun swift test --configuration $(echo $CONFIGURATION | tr "[:upper:]" "[:lower:]") $SANITIZER
         exit 0
         ;;
 
@@ -1002,8 +1007,8 @@ case "$COMMAND" in
         exit 0
         ;;
 
-    "verify-swiftpm")
-        sh build.sh test-swiftpm
+    verify-swiftpm*)
+        sh build.sh test-$(echo $COMMAND | cut -d - -f 2-)
         exit 0
         ;;
 
@@ -1507,7 +1512,7 @@ x.y.z Release notes (yyyy-MM-dd)
 * File format: Generates Realms with format v9 (Reads and upgrades all previous formats)
 * Realm Object Server: 3.21.0 or later.
 * APIs are backwards compatible with all previous releases in the 4.x.y series.
-* Carthage release for Swift is built with Xcode 11.2.
+* Carthage release for Swift is built with Xcode 11.3.
 
 ### Internal
 Upgraded realm-core from ? to ?
