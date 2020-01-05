@@ -14,6 +14,8 @@
 		2441939723A9E8E200A6CBA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2441939523A9E8E200A6CBA1 /* Main.storyboard */; };
 		2441939923A9E8E400A6CBA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2441939823A9E8E400A6CBA1 /* Assets.xcassets */; };
 		244D6FAD23BA078A004FE502 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244D6FAC23BA078A004FE502 /* Record.swift */; };
+		245864D023C1F3E8000A8F89 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245864CE23C1F3E8000A8F89 /* TableViewCell.swift */; };
+		245864D123C2060F000A8F89 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245864CF23C1F3E8000A8F89 /* TableViewCell.xib */; };
 		246742A023ADA83300C343D6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2467429F23ADA83300C343D6 /* MessageUI.framework */; };
 		246742A223ADAB7C00C343D6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246742A123ADAB7C00C343D6 /* FirstViewController.swift */; };
 		246742A423AE4BC700C343D6 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246742A323AE4BC700C343D6 /* PrivacyPolicyViewController.swift */; };
@@ -32,6 +34,8 @@
 		2441939823A9E8E400A6CBA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2441939D23A9E8E400A6CBA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		244D6FAC23BA078A004FE502 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		245864CE23C1F3E8000A8F89 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		245864CF23C1F3E8000A8F89 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		2467429F23ADA83300C343D6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		246742A123ADAB7C00C343D6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		246742A323AE4BC700C343D6 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +88,9 @@
 				24ABACE623B4815100F6EFDB /* RegistrationViewController.swift */,
 				24D12AC823B656EB00F4F612 /* RecordViewController.swift */,
 				244D6FAC23BA078A004FE502 /* Record.swift */,
+				245864CE23C1F3E8000A8F89 /* TableViewCell.swift */,
 				2441939523A9E8E200A6CBA1 /* Main.storyboard */,
+				245864CF23C1F3E8000A8F89 /* TableViewCell.xib */,
 				2441939823A9E8E400A6CBA1 /* Assets.xcassets */,
 				24405ADD23AD0F0A00EC8293 /* LaunchScreen.storyboard */,
 				2441939D23A9E8E400A6CBA1 /* Info.plist */,
@@ -170,6 +176,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				245864D123C2060F000A8F89 /* TableViewCell.xib in Resources */,
 				24405ADE23AD0F0A00EC8293 /* LaunchScreen.storyboard in Resources */,
 				2441939923A9E8E400A6CBA1 /* Assets.xcassets in Resources */,
 				2441939723A9E8E200A6CBA1 /* Main.storyboard in Resources */,
@@ -228,6 +235,7 @@
 				24ABACE723B4815100F6EFDB /* RegistrationViewController.swift in Sources */,
 				2441939423A9E8E200A6CBA1 /* ViewController.swift in Sources */,
 				2441939023A9E8E200A6CBA1 /* AppDelegate.swift in Sources */,
+				245864D023C1F3E8000A8F89 /* TableViewCell.swift in Sources */,
 				24D12AC923B656EB00F4F612 /* RecordViewController.swift in Sources */,
 				246742A423AE4BC700C343D6 /* PrivacyPolicyViewController.swift in Sources */,
 				2441939223A9E8E200A6CBA1 /* SceneDelegate.swift in Sources */,

@@ -12,8 +12,9 @@ import RealmSwift
 class RecordViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate {
     
     
+    @IBOutlet var tableView: UITableView!
     
-    @IBOutlet var table: UITableView!
+   
     
     @IBOutlet var labelToday: UINavigationItem!
 
@@ -27,19 +28,23 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.table.dataSource = self
-        self.table.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         let realm = try! Realm()
         todoItems = realm.objects(Record.self)
-        table.reloadData()
+        tableView.reloadData()
         
         
         labelToday.title = getToday()
         
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-
+        
+        tableView.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier:"RecordCell")
+        configureTableView()
+    
     }
+    
     @IBAction func buttonYesterday(_ sender: Any) {
         labelToday.title = getYesterday()
     }
@@ -63,7 +68,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         try! realm.write {
             realm.add(record)
         }
-        self.table.reloadData()
+        self.tableView.reloadData()
         
     }
     
@@ -81,7 +86,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         try! realm.write {
             realm.add(record)
         }
-        self.table.reloadData()
+        self.tableView.reloadData()
     
     }
     
@@ -99,7 +104,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         try! realm.write {
             realm.add(record)
         }
-        self.table.reloadData()
+        self.tableView.reloadData()
     
     }
     
@@ -117,7 +122,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         try! realm.write {
             realm.add(record)
         }
-        self.table.reloadData()
+        self.tableView.reloadData()
     
     }
     
@@ -135,7 +140,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         try! realm.write {
             realm.add(record)
         }
-        self.table.reloadData()
+        self.tableView.reloadData()
     
     }
     
@@ -153,7 +158,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         try! realm.write {
             realm.add(record)
         }
-        self.table.reloadData()
+        self.tableView.reloadData()
     
     }
     
@@ -162,19 +167,20 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 //画面が表示される前に実行される処理
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        table.reloadData()
+        tableView.reloadData()
     }
 //セル数宣言
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let realm = try! Realm()
         let records = realm.objects(Record.self)
         return todoItems.count
     }
     
+    
 //セル表示
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TableViewCell
         let realm = try! Realm()
         let records = realm.objects(Record.self)
         let object = todoItems[indexPath.row]
@@ -185,9 +191,17 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         return cell
         }
     
+    func configureTableView(){
+        tableView.rowHeight = 450
+    }
+    
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 125
     }
     
     
