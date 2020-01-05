@@ -17,7 +17,9 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBOutlet var labelToday: UINavigationItem!
 
-
+    @IBOutlet var yesterdayLabel: UIBarButtonItem!
+    
+    @IBOutlet var tomorrowLabel: UIBarButtonItem!
     
     
     var todoItems: Results<Record>!
@@ -34,8 +36,18 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         
         labelToday.title = getToday()
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
 
     }
+    @IBAction func buttonYesterday(_ sender: Any) {
+        labelToday.title = getYesterday()
+    }
+    
+    @IBAction func buttonTomorrow(_ sender: Any) {
+        labelToday.title = getTomorrow()
+    }
+    
     
     @IBAction func wakeUpButton(_ sender: Any) {
         
@@ -96,7 +108,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let record = Record()
         record.title = "おしっこ"
         record.nowTime = getTime()
-        record.buttonImage = UIImage(named: "urine")
+        record.buttonImage = UIImage(named: "diapers")
         record.save()
         
         //インスタンス取得
@@ -224,5 +236,43 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         return f.string(from: now)
     }
     
+    func getYesterday() -> String{
+        
+        let f = DateFormatter()
+        f.dateStyle = .full
+        f.timeStyle = .none
+        f.locale = Locale(identifier: "ja_JP")
+        _ = Date()
+        let yesterday = Date(timeIntervalSinceNow: 60 * 60 * -24)
+        return f.string(from: yesterday)
+    }
+    
+    func getTomorrow() -> String{
+        
+        let f = DateFormatter()
+        f.dateStyle = .full
+        f.timeStyle = .none
+        f.locale = Locale(identifier: "ja_JP")
+        _ = Date()
+        let tomorrow = Date(timeIntervalSinceNow: 60 * 60 * 24)
+        return f.string(from: tomorrow)
+    }
+    
+//    func kinou() -> String{
+        
+//        var calendar = Calendar.current
+//        let f = DateFormatter()
+//        f.dateStyle = .full
+//        f.timeStyle = .none
+//        f.locale = Locale(identifier: "ja_JP")
+//        let date = Date()
+//        let yesterday = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
+//        return f.string(from: yesterday!)
+
+//    }
+
+    // 明日
+  //  let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: date))
+   
 
 }
