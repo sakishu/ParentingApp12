@@ -41,7 +41,6 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier:"RecordCell")
-        configureTableView()
     
     }
     
@@ -181,28 +180,25 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 //セル表示
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TableViewCell
+        
         let realm = try! Realm()
         let records = realm.objects(Record.self)
         let object = todoItems[indexPath.row]
         cell.textLabel?.text = object.title
         cell.textLabel?.text = object.nowTime
-        cell.imageView?.image = UIImage()
+        cell.imageView?.image = object.buttonImage
         
         return cell
         }
     
-    func configureTableView(){
-        tableView.rowHeight = 450
-    }
+  
     
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
-    }
+  
     
     
     func tableView(_ tableView: UITableView,commit editingStyle: UITableViewCell.EditingStyle,forRowAt indexPath: IndexPath) {
