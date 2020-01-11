@@ -12,9 +12,9 @@ import RealmSwift
 class RecordViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate {
     
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var babyNameLabel: UINavigationItem!
     
-   
+    @IBOutlet var tableView: UITableView!
     
     @IBOutlet var labelToday: UINavigationItem!
 
@@ -168,6 +168,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+    
+
 //セル数宣言
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -184,9 +186,9 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let realm = try! Realm()
         let records = realm.objects(Record.self)
         let object = todoItems[indexPath.row]
-        cell.textLabel?.text = object.title
-        cell.textLabel?.text = object.nowTime
-        cell.imageView?.image = object.buttonImage
+        cell.bindData(text: object.title, label: object.nowTime, image: object.buttonImage!)
+
+//        cell.setCell(record: records[indexPath.row])
         
         return cell
         }
@@ -268,21 +270,5 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         return f.string(from: tomorrow)
     }
     
-//    func kinou() -> String{
-        
-//        var calendar = Calendar.current
-//        let f = DateFormatter()
-//        f.dateStyle = .full
-//        f.timeStyle = .none
-//        f.locale = Locale(identifier: "ja_JP")
-//        let date = Date()
-//        let yesterday = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-//        return f.string(from: yesterday!)
-
-//    }
-
-    // 明日
-  //  let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: date))
-   
 
 }

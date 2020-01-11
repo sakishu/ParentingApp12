@@ -20,11 +20,23 @@ class TableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+//    func setCell(record: Record) {
+//      self.ParentLabel.text = record.title as String
+//      self.TimeLabel.text = record.nowTime as String
+//        self.ButtonImage.image = record.buttonImage as UIImage?
+//    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func bindData(text: String, label: String, image: UIImage) {
+        ParentLabel.text = text
+        TimeLabel.text = label
+        ButtonImage.image = image
     }
     
 }

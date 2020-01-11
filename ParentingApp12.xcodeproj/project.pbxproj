@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240D10C223C7765800514AC2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10C123C7765800514AC2 /* TabBarController.swift */; };
 		24405ADE23AD0F0A00EC8293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24405ADD23AD0F0A00EC8293 /* LaunchScreen.storyboard */; };
 		2441939023A9E8E200A6CBA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441938F23A9E8E200A6CBA1 /* AppDelegate.swift */; };
 		2441939223A9E8E200A6CBA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441939123A9E8E200A6CBA1 /* SceneDelegate.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		240D10C123C7765800514AC2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		24405ADD23AD0F0A00EC8293 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2441938C23A9E8E200A6CBA1 /* ParentingApp12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentingApp12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2441938F23A9E8E200A6CBA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		2441938E23A9E8E200A6CBA1 /* ParentingApp12 */ = {
 			isa = PBXGroup;
 			children = (
+				244D6FAC23BA078A004FE502 /* Record.swift */,
 				2441938F23A9E8E200A6CBA1 /* AppDelegate.swift */,
 				2441939123A9E8E200A6CBA1 /* SceneDelegate.swift */,
 				2441939323A9E8E200A6CBA1 /* ViewController.swift */,
@@ -87,8 +90,8 @@
 				246742A323AE4BC700C343D6 /* PrivacyPolicyViewController.swift */,
 				24ABACE623B4815100F6EFDB /* RegistrationViewController.swift */,
 				24D12AC823B656EB00F4F612 /* RecordViewController.swift */,
-				244D6FAC23BA078A004FE502 /* Record.swift */,
 				245864CE23C1F3E8000A8F89 /* TableViewCell.swift */,
+				240D10C123C7765800514AC2 /* TabBarController.swift */,
 				2441939523A9E8E200A6CBA1 /* Main.storyboard */,
 				245864CF23C1F3E8000A8F89 /* TableViewCell.xib */,
 				2441939823A9E8E400A6CBA1 /* Assets.xcassets */,
@@ -235,6 +238,7 @@
 				24ABACE723B4815100F6EFDB /* RegistrationViewController.swift in Sources */,
 				2441939423A9E8E200A6CBA1 /* ViewController.swift in Sources */,
 				2441939023A9E8E200A6CBA1 /* AppDelegate.swift in Sources */,
+				240D10C223C7765800514AC2 /* TabBarController.swift in Sources */,
 				245864D023C1F3E8000A8F89 /* TableViewCell.swift in Sources */,
 				24D12AC923B656EB00F4F612 /* RecordViewController.swift in Sources */,
 				246742A423AE4BC700C343D6 /* PrivacyPolicyViewController.swift in Sources */,

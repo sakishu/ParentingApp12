@@ -210,7 +210,7 @@
             </objects>
             <point key="canvasLocation" x="94" y="1144"/>
         </scene>
-        <!--Record View Controller-->
+        <!--しゅうか-->
         <scene sceneID="Vms-o5-rRw">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BJN-Bi-h8B" customClass="RecordViewController" customModule="ParentingApp12" customModuleProvider="target" sceneMemberID="viewController">
@@ -369,6 +369,10 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RGK-Zu-6y5">
                                         <rect key="frame" x="1" y="1" width="412" height="418"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BJN-Bi-h8B" id="R7D-gl-zsS"/>
+                                            <outlet property="delegate" destination="BJN-Bi-h8B" id="RUL-jv-ErF"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -397,8 +401,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7OY-iB-00D"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WB1-Ob-wQ8"/>
+                    <navigationItem key="navigationItem" title="しゅうか" id="WB1-Ob-wQ8"/>
                     <connections>
+                        <outlet property="babyNameLabel" destination="WB1-Ob-wQ8" id="Qnn-sN-j9o"/>
                         <outlet property="labelToday" destination="dEX-07-3M5" id="xkB-0i-Cx2"/>
                         <outlet property="tableView" destination="RGK-Zu-6y5" id="Jbc-7Z-hIt"/>
                         <outlet property="tomorrowLabel" destination="gPL-mZ-inL" id="skC-7O-X3A"/>
@@ -407,7 +412,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R0C-tB-s59" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="164" y="-329"/>
+            <point key="canvasLocation" x="94" y="-335"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JCz-L8-7hQ">
@@ -455,7 +460,7 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ニックネーム" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7su-nx-khL">
                                 <rect key="frame" x="45" y="124.5" width="324" height="34"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -489,6 +494,9 @@
                                     <segment title="女の子"/>
                                     <segment title="性別設定なし"/>
                                 </segments>
+                                <connections>
+                                    <action selector="sexSelect:" destination="K7c-gS-OSt" eventType="valueChanged" id="02y-1D-BfH"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="41j-xq-VPL">
                                 <rect key="frame" x="81.5" y="275.5" width="251" height="32"/>
