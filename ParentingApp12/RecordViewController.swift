@@ -234,7 +234,9 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     
-//現時刻取得
+
+    
+    //現時刻取得
     
     
     
