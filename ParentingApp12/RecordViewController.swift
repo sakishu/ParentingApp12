@@ -37,6 +37,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         
         labelToday.title = getToday()
+
         
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
@@ -44,7 +45,9 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     }
     
+    
     @IBAction func buttonYesterday(_ sender: Any) {
+
         labelToday.title = getYesterday()
     }
     
@@ -217,6 +220,10 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        return
+    }
+    
     
     func deleteTodo(Index: Int){
         let realm = try! Realm()
@@ -228,6 +235,12 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
 //現時刻取得
+    
+    
+    
+    
+    
+    
     func getToday() -> String{
         
         let f = DateFormatter()
@@ -249,6 +262,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func getYesterday() -> String{
+        var kinou = labelToday.title
         
         let f = DateFormatter()
         f.dateStyle = .full
