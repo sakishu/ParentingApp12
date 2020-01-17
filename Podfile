@@ -2,9 +2,12 @@
 # platform :ios, '9.0'
 
 target 'ParentingApp12' do
-pod 'RealmSwift'
+
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+
+pod 'RealmSwift'
+pod 'JBDatePicker'
 
   # Pods for ParentingApp12
 

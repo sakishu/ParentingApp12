@@ -1,4 +1,5 @@
 PODS:
+  - JBDatePicker (1.2.5)
   - Realm (4.3.0):
     - Realm/Headers (= 4.3.0)
   - Realm/Headers (4.3.0)
@@ -6,17 +7,20 @@ PODS:
     - Realm (= 4.3.0)
 
 DEPENDENCIES:
+  - JBDatePicker
   - RealmSwift
 
 SPEC REPOS:
   trunk:
+    - JBDatePicker
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
+  JBDatePicker: 0e791c8a79c49b0d37decea28ba147515bf5cfca
   Realm: 9357c3589555793e1860a7104a7412bca4a48d99
   RealmSwift: 402f1e379a8ef82c635313037b043f0f06de880c
 
-PODFILE CHECKSUM: 027651f53d612944dca8048e8bfadfce4ea08011
+PODFILE CHECKSUM: 3dfc2e53cd3cf6b2263f1d47380c0f421cdd6f39
 
 COCOAPODS: 1.8.4

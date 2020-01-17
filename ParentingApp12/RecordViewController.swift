@@ -22,37 +22,51 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBOutlet var tomorrowLabel: UIBarButtonItem!
     
-    
     var todoItems: Results<Record>!
+    
+    var now = Date().addingTimeInterval(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.overrideUserInterfaceStyle = .light
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
         let realm = try! Realm()
         todoItems = realm.objects(Record.self)
         tableView.reloadData()
-        
-        
+            
         labelToday.title = getToday()
 
-        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier:"RecordCell")
     
     }
     
-    
     @IBAction func buttonYesterday(_ sender: Any) {
+        let f = DateFormatter()
+        f.dateStyle = .full
+        f.timeStyle = .none
+        f.locale = Locale(identifier: "ja_JP")
 
-        labelToday.title = getYesterday()
+        now = Date(timeInterval: 60 * 60 * -24, since: now)
+        
+        labelToday.title = f.string(from: now)
+        
+        
     }
     
     @IBAction func buttonTomorrow(_ sender: Any) {
-        labelToday.title = getTomorrow()
+        let f = DateFormatter()
+        f.dateStyle = .full
+        f.timeStyle = .none
+        f.locale = Locale(identifier: "ja_JP")
+        
+        now = Date(timeInterval: 60 * 60 * 24, since: now)
+        
+        labelToday.title = f.string(from: now)
     }
     
     
@@ -237,12 +251,6 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     
     //現時刻取得
-    
-    
-    
-    
-    
-    
     func getToday() -> String{
         
         let f = DateFormatter()
@@ -264,16 +272,17 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func getYesterday() -> String{
-        var kinou = labelToday.title
         
         let f = DateFormatter()
         f.dateStyle = .full
         f.timeStyle = .none
         f.locale = Locale(identifier: "ja_JP")
-        _ = Date()
-        let yesterday = Date(timeIntervalSinceNow: 60 * 60 * -24)
+        var now = Date().addingTimeInterval(0)
+
+        let yesterday = Date(timeInterval: 60 * 60 * -24, since: now)
         return f.string(from: yesterday)
     }
+        
     
     func getTomorrow() -> String{
         
@@ -286,5 +295,20 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         return f.string(from: tomorrow)
     }
     
+   func kinou() -> String{
+
+    var calendar = Calendar.current
+    let f = DateFormatter()
+    f.dateStyle = .full
+    f.timeStyle = .none
+    f.locale = Locale(identifier: "ja_JP")
+    _ = Date()
+    let date = Date()
+
+    // 昨日
+    let yesterday = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
+        
+        return f.string(from: yesterday!)
+    }
 
 }
