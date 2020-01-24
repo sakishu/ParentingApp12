@@ -12,39 +12,66 @@ import RealmSwift
 class RecordViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate {
     
     
-    @IBOutlet var babyNameLabel: UINavigationItem!
+    
     
     @IBOutlet var tableView: UITableView!
     
+//日付表示用タイトル
     @IBOutlet var labelToday: UINavigationItem!
-
+//赤ちゃんの名前を表示するタイトル
+    @IBOutlet var babyName: UINavigationItem!
+//年齢表示ラベル
+    @IBOutlet var birthdayLabel: UILabel!
+//前日ボタン
     @IBOutlet var yesterdayLabel: UIBarButtonItem!
-    
+//翌日ボタン
     @IBOutlet var tomorrowLabel: UIBarButtonItem!
     
-    var todoItems: Results<Record>!
+    @IBOutlet var babyImage: UIImageView!
+//RegistrationViewControllerで入力されたニックネームを受け取る変数
+    var name = ""
+//選択画像受取
+    var babyImageView:UIImage = UIImage()
     
+    var birthdayLabel2 = ""
+    
+    var babyBirthday = Date()
+    
+    var todoItems: Results<Record>!
+
     var now = Date().addingTimeInterval(0)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaults.standard.string(forKey: "Name")
+        
+//入力されたニックネームを表示
+        babyName.title = name
+        
+        babyImage.image = babyImageView
+        
+//ライトモード設定
         self.overrideUserInterfaceStyle = .light
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
         let realm = try! Realm()
         todoItems = realm.objects(Record.self)
         tableView.reloadData()
-            
+//日付表示
         labelToday.title = getToday()
-
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
         
+        birthdayLabel.text = birthdayLabel2
+        
+//realmデータ確認用
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier:"RecordCell")
-    
     }
-    
+//タップすると表示の日付から−１日
     @IBAction func buttonYesterday(_ sender: Any) {
         let f = DateFormatter()
         f.dateStyle = .full
@@ -54,10 +81,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         now = Date(timeInterval: 60 * 60 * -24, since: now)
         
         labelToday.title = f.string(from: now)
-        
-        
     }
-    
+//タップすると表示の日付から１日
     @IBAction func buttonTomorrow(_ sender: Any) {
         let f = DateFormatter()
         f.dateStyle = .full
@@ -68,8 +93,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         labelToday.title = f.string(from: now)
     }
-    
-    
+//以下育児状況記録用のボタン
     @IBAction func wakeUpButton(_ sender: Any) {
         
         let record = Record()
@@ -178,15 +202,12 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     }
     
-    
-    
 //画面が表示される前に実行される処理
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
-
 //セル数宣言
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -194,7 +215,6 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let records = realm.objects(Record.self)
         return todoItems.count
     }
-    
     
 //セル表示
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -204,22 +224,16 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let records = realm.objects(Record.self)
         let object = todoItems[indexPath.row]
         cell.bindData(text: object.title, label: object.nowTime, image: object.buttonImage!)
-
 //        cell.setCell(record: records[indexPath.row])
-        
         return cell
         }
     
-  
-    
-    
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-  
-    
-    
+
+
     func tableView(_ tableView: UITableView,commit editingStyle: UITableViewCell.EditingStyle,forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let realm = try! Realm()
@@ -233,7 +247,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         return
     }
@@ -247,10 +261,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         
     }
     
-    
-
-    
-    //現時刻取得
+//現時刻取得
     func getToday() -> String{
         
         let f = DateFormatter()
