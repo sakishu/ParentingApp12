@@ -21,12 +21,10 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate{
     var birthday = Date()
     var birthdayLabel1 = ""
    
-    
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let userDefaults = UserDefaults.standard
         
         babyName.delegate = self
 
@@ -37,16 +35,22 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate{
 
     @IBAction func sexSelect(_ sender: UISegmentedControl) {
         switch sex.selectedSegmentIndex{
-        case 0: sexSelect = UIImage(named: "babys")!
-               case 1: sexSelect = UIImage(named: "girl")!
-               case 2: print("性別設定なし")
-               default: print("error")
-               }
+            case 0: sexSelect = UIImage(named: "babys")!
+                    let data = sexSelect.pngData()
+                    defaults.set(data, forKey: "image")
+            case 1: sexSelect = UIImage(named: "girl")!
+                    let data = sexSelect.pngData()
+                    defaults.set(data, forKey: "image")
+            case 2: sexSelect = UIImage(named: "cherry")!
+                    let data = sexSelect.pngData()
+                    defaults.set(data, forKey: "image")
+            default: print("error")
     }
+}
     
     @IBAction func birthdayButton(_ sender: Any) {
         
-        UserDefaults.standard.set(babyName.text, forKey: "Name")
+    
     }
     
     
@@ -68,11 +72,12 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate{
         self.performSegue(withIdentifier: "tabBar", sender: self)
     
         textField = babyName.text!
-
-        UserDefaults.standard.set(textField, forKey: "name")
         
         print(birthdayLabel1)
-
+        
+//入力した名前を保存
+        defaults.set(babyName.text, forKey: "Name")
+        
     }
 
     

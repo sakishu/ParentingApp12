@@ -8,6 +8,9 @@ target 'ParentingApp12' do
 
 pod 'RealmSwift'
 pod 'JBDatePicker'
+pod 'FSCalendar'
+pod 'CalculateCalendarLogic'
+
 
   # Pods for ParentingApp12
 

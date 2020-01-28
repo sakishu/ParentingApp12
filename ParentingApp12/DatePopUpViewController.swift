@@ -21,11 +21,14 @@ class DatePopUpViewController: UIViewController {
     var birthdayLabel = ""
     
     var now = Date().addingTimeInterval(0)
+    
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
       
+        
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -82,5 +85,9 @@ class DatePopUpViewController: UIViewController {
         
 //値を渡せるが、先に入力した情報が消える
 //        present(backVC, animated: true, completion: nil)
+        
+//選択した日付を保存
+        defaults.set(birthdayLabel, forKey: "birthdaySetting")
+        
     }
 }

@@ -41,17 +41,15 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     var now = Date().addingTimeInterval(0)
     
+    let defaults = UserDefaults.standard
+    
+    let sexImage: UIImage? = nil
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        UserDefaults.standard.string(forKey: "Name")
-        
-//入力されたニックネームを表示
-        babyName.title = name
-        
-        babyImage.image = babyImageView
-        
 //ライトモード設定
         self.overrideUserInterfaceStyle = .light
         
@@ -70,6 +68,25 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         print(Realm.Configuration.defaultConfiguration.fileURL!)
 
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier:"RecordCell")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //userDefaultsから参照(Data)
+                let sexData = defaults.data(forKey: "image")
+                //DataをImageに変換
+                let sexImage = UIImage(data: sexData!)
+
+                //入力した誕生日を取得
+        birthdayLabel.text = defaults.string(forKey: "birthdaySetting")
+            
+        //入力されたニックネームを表示
+                babyName.title = defaults.string(forKey: "Name")
+                
+        //      babyImage.image = babyImageView
+        //      取得した性別画像を表示
+                babyImage.image = sexImage
+        
     }
 //タップすると表示の日付から−１日
     @IBAction func buttonYesterday(_ sender: Any) {
