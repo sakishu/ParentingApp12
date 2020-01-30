@@ -72,6 +72,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        
         //userDefaultsから参照(Data)
                 let sexData = defaults.data(forKey: "image")
                 //DataをImageに変換

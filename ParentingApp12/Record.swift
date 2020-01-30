@@ -11,6 +11,7 @@ import RealmSwift
 
 class Record: Object{
     static let realm = try! Realm()
+
     
     @objc dynamic var title = ""
     @objc dynamic var nowTime = ""
@@ -43,7 +44,8 @@ class Record: Object{
             Record.realm.add(self)
         }
     }
-        
+
+    
 }
 
 //extension Data{

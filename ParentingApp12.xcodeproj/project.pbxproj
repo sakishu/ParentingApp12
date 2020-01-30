@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2407AEC623E1BE6A0021CA87 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407AEC523E1BE6A0021CA87 /* Event.swift */; };
+		2407AEC823E1C29D0021CA87 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407AEC723E1C29D0021CA87 /* EventViewController.swift */; };
 		240D10C223C7765800514AC2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10C123C7765800514AC2 /* TabBarController.swift */; };
 		24405ADE23AD0F0A00EC8293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24405ADD23AD0F0A00EC8293 /* LaunchScreen.storyboard */; };
 		2441939023A9E8E200A6CBA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441938F23A9E8E200A6CBA1 /* AppDelegate.swift */; };
@@ -17,8 +19,6 @@
 		244D6FAD23BA078A004FE502 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244D6FAC23BA078A004FE502 /* Record.swift */; };
 		2455264023DE8A3C00AF9B76 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455263F23DE8A3C00AF9B76 /* CalendarViewController.swift */; };
 		2455264223DE8A6200AF9B76 /* SettimgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455264123DE8A6200AF9B76 /* SettimgViewController.swift */; };
-		2455264423DE93BE00AF9B76 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455264323DE93BE00AF9B76 /* CalendarModel.swift */; };
-		2455264623DE949300AF9B76 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455264523DE949300AF9B76 /* EventViewController.swift */; };
 		2455264823DF040D00AF9B76 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455264723DF040D00AF9B76 /* SplashViewController.swift */; };
 		245864D023C1F3E8000A8F89 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245864CE23C1F3E8000A8F89 /* TableViewCell.swift */; };
 		245864D123C2060F000A8F89 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245864CF23C1F3E8000A8F89 /* TableViewCell.xib */; };
@@ -31,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2407AEC523E1BE6A0021CA87 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		2407AEC723E1C29D0021CA87 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		240D10C123C7765800514AC2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		24405ADD23AD0F0A00EC8293 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2441938C23A9E8E200A6CBA1 /* ParentingApp12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentingApp12.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,8 +45,6 @@
 		244D6FAC23BA078A004FE502 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		2455263F23DE8A3C00AF9B76 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		2455264123DE8A6200AF9B76 /* SettimgViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettimgViewController.swift; sourceTree = "<group>"; };
-		2455264323DE93BE00AF9B76 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
-		2455264523DE949300AF9B76 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		2455264723DF040D00AF9B76 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		245864CE23C1F3E8000A8F89 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		245864CF23C1F3E8000A8F89 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -95,8 +95,8 @@
 				244D6FAC23BA078A004FE502 /* Record.swift */,
 				2441938F23A9E8E200A6CBA1 /* AppDelegate.swift */,
 				2441939123A9E8E200A6CBA1 /* SceneDelegate.swift */,
+				2407AEC523E1BE6A0021CA87 /* Event.swift */,
 				2455264723DF040D00AF9B76 /* SplashViewController.swift */,
-				2455264323DE93BE00AF9B76 /* CalendarModel.swift */,
 				246742A123ADAB7C00C343D6 /* FirstViewController.swift */,
 				246742A323AE4BC700C343D6 /* PrivacyPolicyViewController.swift */,
 				24ABACE623B4815100F6EFDB /* RegistrationViewController.swift */,
@@ -106,7 +106,7 @@
 				244A01BC23D5B06400A2B92A /* DatePopUpViewController.swift */,
 				2455263F23DE8A3C00AF9B76 /* CalendarViewController.swift */,
 				2455264123DE8A6200AF9B76 /* SettimgViewController.swift */,
-				2455264523DE949300AF9B76 /* EventViewController.swift */,
+				2407AEC723E1C29D0021CA87 /* EventViewController.swift */,
 				245864CF23C1F3E8000A8F89 /* TableViewCell.xib */,
 				2441939523A9E8E200A6CBA1 /* Main.storyboard */,
 				2441939823A9E8E400A6CBA1 /* Assets.xcassets */,
@@ -252,18 +252,18 @@
 			files = (
 				24ABACE723B4815100F6EFDB /* RegistrationViewController.swift in Sources */,
 				2441939023A9E8E200A6CBA1 /* AppDelegate.swift in Sources */,
-				2455264423DE93BE00AF9B76 /* CalendarModel.swift in Sources */,
 				240D10C223C7765800514AC2 /* TabBarController.swift in Sources */,
 				2455264023DE8A3C00AF9B76 /* CalendarViewController.swift in Sources */,
 				245864D023C1F3E8000A8F89 /* TableViewCell.swift in Sources */,
+				2407AEC823E1C29D0021CA87 /* EventViewController.swift in Sources */,
 				24D12AC923B656EB00F4F612 /* RecordViewController.swift in Sources */,
 				2455264223DE8A6200AF9B76 /* SettimgViewController.swift in Sources */,
 				246742A423AE4BC700C343D6 /* PrivacyPolicyViewController.swift in Sources */,
 				2455264823DF040D00AF9B76 /* SplashViewController.swift in Sources */,
-				2455264623DE949300AF9B76 /* EventViewController.swift in Sources */,
 				2441939223A9E8E200A6CBA1 /* SceneDelegate.swift in Sources */,
 				244A01BD23D5B06400A2B92A /* DatePopUpViewController.swift in Sources */,
 				244D6FAD23BA078A004FE502 /* Record.swift in Sources */,
+				2407AEC623E1BE6A0021CA87 /* Event.swift in Sources */,
 				246742A223ADAB7C00C343D6 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

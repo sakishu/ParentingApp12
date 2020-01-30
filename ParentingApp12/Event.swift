@@ -1,8 +1,8 @@
 //
-//  CalendarModel.swift
+//  Event.swift
 //  ParentingApp12
 //
-//  Created by 咲枝友則 on 2020/01/27.
+//  Created by 咲枝友則 on 2020/01/29.
 //  Copyright © 2020 咲枝友則. All rights reserved.
 //
 

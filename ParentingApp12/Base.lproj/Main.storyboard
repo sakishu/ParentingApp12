@@ -213,7 +213,7 @@
             <objects>
                 <viewController storyboardIdentifier="calendar" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EHH-UB-fqE" customClass="CalendarViewController" customModule="ParentingApp12" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7rE-ml-hP2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="34H-2r-7r3"/>
@@ -222,29 +222,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6YF-Ve-U40" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-364" y="366"/>
+            <point key="canvasLocation" x="-364" y="364"/>
         </scene>
         <!--Event View Controller-->
-        <scene sceneID="2gr-rN-0fv">
+        <scene sceneID="dh5-nb-Bkb">
             <objects>
-                <viewController storyboardIdentifier="Insert" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6oT-ue-L0x" customClass="EventViewController" customModule="ParentingApp12" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uHh-HI-rhI">
+                <viewController storyboardIdentifier="Insert" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fdv-Ne-wbn" customClass="EventViewController" customModule="ParentingApp12" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Esh-kx-Ok8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="9Pw-1Q-Mw2"/>
+                        <viewLayoutGuide key="safeArea" id="WUV-8C-nxW"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BUK-Or-hYI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sdk-li-ayH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="370" y="372"/>
+            <point key="canvasLocation" x="388" y="372"/>
         </scene>
         <!--Settimg View Controller-->
         <scene sceneID="4rQ-Kf-9s2">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="KUL-qM-27P" customClass="SettimgViewController" customModule="ParentingApp12" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dye-U1-vnf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="iOm-QN-tsg"/>
@@ -260,11 +260,11 @@
             <objects>
                 <viewController storyboardIdentifier="RecordViewcontroller" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BJN-Bi-h8B" customClass="RecordViewController" customModule="ParentingApp12" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EW6-zA-fvq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mJ5-Oi-bIx">
-                                <rect key="frame" x="0.0" y="56" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mJ5-Oi-bIx" secondAttribute="height" multiplier="207:22" id="Exm-qh-Zei"/>
                                 </constraints>
@@ -273,10 +273,10 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-YI-p2G">
-                                <rect key="frame" x="0.0" y="100" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="681"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ox6-72-U2N">
-                                        <rect key="frame" x="34" y="559" width="346" height="90"/>
+                                        <rect key="frame" x="34" y="581" width="346" height="90"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgu-yK-J8V">
                                                 <rect key="frame" x="0.0" y="0.0" width="88.5" height="90"/>
@@ -339,7 +339,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="K9Z-Nq-HYH">
-                                        <rect key="frame" x="34" y="439" width="346" height="90"/>
+                                        <rect key="frame" x="34" y="461" width="346" height="90"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gk5-G0-ohW">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
@@ -401,7 +401,7 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RGK-Zu-6y5">
-                                        <rect key="frame" x="1" y="1" width="412" height="418"/>
+                                        <rect key="frame" x="1" y="1" width="412" height="440"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="BJN-Bi-h8B" id="R7D-gl-zsS"/>
@@ -423,13 +423,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1才8ヶ月5日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxG-eQ-7TN">
-                                <rect key="frame" x="329" y="71" width="70" height="14.5"/>
+                                <rect key="frame" x="329" y="103" width="70" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rjt-rc-Min">
-                                <rect key="frame" x="70" y="58" width="40" height="40"/>
+                                <rect key="frame" x="70" y="90" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="V8w-FV-eiu"/>
                                     <constraint firstAttribute="height" constant="40" id="iOi-EX-5JD"/>
@@ -723,7 +723,7 @@
                     <tabBarItem key="tabBarItem" tag="1" title="記録" image="square.and.pencil" catalog="system" selectedImage="square.and.pencil" id="mlG-ZW-CUm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3uz-Fu-Mgv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -742,17 +742,17 @@
                     <tabBarItem key="tabBarItem" tag="2" title="カレンダー" image="calendar" catalog="system" selectedImage="calendar" id="bOo-kq-HAr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EUC-1H-q9Q">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="EHH-UB-fqE" kind="relationship" relationship="rootViewController" id="9Zy-aZ-kMU"/>
+                        <segue destination="EHH-UB-fqE" kind="relationship" relationship="rootViewController" id="oDX-GF-e7N"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNu-Kc-1Dh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1138" y="364"/>
+            <point key="canvasLocation" x="-1141" y="390"/>
         </scene>
         <!--設定-->
         <scene sceneID="dyd-Kb-t2n">
@@ -763,7 +763,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="m3x-Vz-6tt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -789,7 +789,7 @@
         <image name="wrench.fill" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Fy9-0x-Usk"/>
-        <segue reference="q2D-17-MPI"/>
+        <segue reference="Q2l-E9-qMI"/>
+        <segue reference="pG7-hj-Psv"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,13 +15,13 @@ import RealmSwift
 let w = UIScreen.main.bounds.size.width
 let h = UIScreen.main.bounds.size.height
 
-class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     //カレンダー処理(スケジュール表示処理)
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
 
         labelTitle.text = "主なスケジュール"
-        labelTitle.backgroundColor = .orange
+        labelTitle.backgroundColor = UIColor(red: 1.0, green: 0, blue: 1.0, alpha: 0.2)
         view.addSubview(labelTitle)
 
         //予定がある場合、スケジュールをDBから取得・表示する。
@@ -71,7 +71,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     //「主なスケジュール」の表示
     let labelTitle = UILabel(frame: CGRect(x: 0, y: 530, width: 180, height: 50))
     //カレンダー部分
-    let dateView = FSCalendar(frame: CGRect(x: 0, y: 30, width: w, height: 400))
+    let dateView = FSCalendar(frame: CGRect(x: 0, y: 80, width: w, height: 400))
     //日付の表示
     let Date = UILabel(frame: CGRect(x: 5, y: 430, width: 200, height: 100))
     override func viewDidLoad() {
@@ -103,10 +103,10 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         view.addSubview(labelDate)
 
         //スケジュール追加ボタン
-        let addBtn = UIButton(frame: CGRect(x: w - 70, y: h - 70, width: 60, height: 60))
+        let addBtn = UIButton(frame: CGRect(x: w - 110, y: h - 200, width: 60, height: 60))
         addBtn.setTitle("+", for: UIControl.State())
         addBtn.setTitleColor(.white, for: UIControl.State())
-        addBtn.backgroundColor = .orange
+        addBtn.backgroundColor = UIColor(red: 1.0, green: 0, blue: 1.0, alpha: 0.2)
         addBtn.layer.cornerRadius = 30.0
         addBtn.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
         view.addSubview(addBtn)
@@ -171,3 +171,4 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     }
 
 }
+
