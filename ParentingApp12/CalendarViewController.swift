@@ -62,7 +62,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     //画面遷移(スケジュール登録ページ)
     @objc func onClick(_: UIButton) {
-        let storyboard = UIStoryboard(name: "calendar", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let SecondController = storyboard.instantiateViewController(withIdentifier: "Insert")
         present(SecondController, animated: true, completion: nil)
     }

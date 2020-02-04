@@ -50,7 +50,7 @@ class EventViewController: UIViewController {
         view.addSubview(eventInsert)
 
         //「戻る!」ボタン
-        let backBtn = UIButton(frame: CGRect(x: (w - 200) / 2, y: h - 50, width: 200, height: 30))
+        let backBtn = UIButton(frame: CGRect(x: (w - 200) / 2, y: h - 150, width: 200, height: 30))
         backBtn.setTitle("戻る", for: UIControl.State())
         backBtn.setTitleColor(.orange, for: UIControl.State())
         backBtn.backgroundColor = .white

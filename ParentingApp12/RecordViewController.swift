@@ -10,9 +10,7 @@ import UIKit
 import RealmSwift
 
 class RecordViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate {
-    
-    
-    
+    let record = Record()
     
     @IBOutlet var tableView: UITableView!
     
@@ -70,26 +68,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier:"RecordCell")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
-        //userDefaultsから参照(Data)
-                let sexData = defaults.data(forKey: "image")
-                //DataをImageに変換
-                let sexImage = UIImage(data: sexData!)
 
-                //入力した誕生日を取得
-        birthdayLabel.text = defaults.string(forKey: "birthdaySetting")
-            
-        //入力されたニックネームを表示
-                babyName.title = defaults.string(forKey: "Name")
-                
-        //      babyImage.image = babyImageView
-        //      取得した性別画像を表示
-                babyImage.image = sexImage
-        
-    }
 //タップすると表示の日付から−１日
     @IBAction func buttonYesterday(_ sender: Any) {
         let f = DateFormatter()
@@ -100,6 +79,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         now = Date(timeInterval: 60 * 60 * -24, since: now)
         
         labelToday.title = f.string(from: now)
+        
     }
 //タップすると表示の日付から１日
     @IBAction func buttonTomorrow(_ sender: Any) {
@@ -114,8 +94,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
 //以下育児状況記録用のボタン
     @IBAction func wakeUpButton(_ sender: Any) {
-        
         let record = Record()
+        record.date = labelToday.title!
         record.title = "起きる"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "smile")
@@ -134,6 +114,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBAction func sleepButton(_ sender: Any) {
         
         let record = Record()
+        record.date = labelToday.title!
         record.title = "寝る"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "sleep")
@@ -152,6 +133,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBAction func peepButton(_ sender: Any) {
         
         let record = Record()
+        record.date = labelToday.title!
         record.title = "うんち"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "peep")
@@ -170,6 +152,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBAction func urineButton(_ sender: Any) {
         
         let record = Record()
+        record.date = labelToday.title!
         record.title = "おしっこ"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "diapers")
@@ -188,6 +171,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBAction func milkButton(_ sender: Any) {
         
         let record = Record()
+        record.date = labelToday.title!
         record.title = "ミルク"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "milk")
@@ -206,6 +190,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBAction func feedButton(_ sender: Any) {
         
         let record = Record()
+        record.date = labelToday.title!
         record.title = "授乳"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "breastfeed")
@@ -224,14 +209,31 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 //画面が表示される前に実行される処理
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //userDefaultsから参照(Data)
+                let sexData = defaults.data(forKey: "image")
+                //DataをImageに変換
+                let sexImage = UIImage(data: sexData!)
+
+                //入力した誕生日を取得
+        birthdayLabel.text = defaults.string(forKey: "birthdaySetting")
+            
+        //入力されたニックネームを表示
+                babyName.title = defaults.string(forKey: "Name")
+                
+        //      babyImage.image = babyImageView
+        //      取得した性別画像を表示
+                babyImage.image = sexImage
+        
         tableView.reloadData()
+        
+       
+
     }
     
 //セル数宣言
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let realm = try! Realm()
-        let records = realm.objects(Record.self)
         return todoItems.count
     }
     
@@ -240,10 +242,24 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TableViewCell
         
         let realm = try! Realm()
-        let records = realm.objects(Record.self)
         let object = todoItems[indexPath.row]
+        var result = realm.objects(Record.self)
+
+        result = result.filter("date = '\(labelToday.title)'")
+
+               for rd in result {
+
+                if rd.date == labelToday.title {
+
+                    record.title = rd.title
+
+                    record.nowTime = rd.nowTime
+
+                    record.buttonImage = rd.buttonImage
+
+                   }
+               }
         cell.bindData(text: object.title, label: object.nowTime, image: object.buttonImage!)
-//        cell.setCell(record: records[indexPath.row])
         return cell
         }
     
@@ -255,15 +271,14 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     func tableView(_ tableView: UITableView,commit editingStyle: UITableViewCell.EditingStyle,forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
+            if let object = todoItems?[indexPath.row] {
+            tableView.reloadData()
             let realm = try! Realm()
-            let records = realm.objects(Record.self)
-            let object = todoItems[indexPath.row]
-            
             try! realm.write{
-                realm.delete(records)
+                realm.delete(object)
+                }
+                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             }
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 
@@ -324,21 +339,4 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let tomorrow = Date(timeIntervalSinceNow: 60 * 60 * 24)
         return f.string(from: tomorrow)
     }
-    
-   func kinou() -> String{
-
-    var calendar = Calendar.current
-    let f = DateFormatter()
-    f.dateStyle = .full
-    f.timeStyle = .none
-    f.locale = Locale(identifier: "ja_JP")
-    _ = Date()
-    let date = Date()
-
-    // 昨日
-    let yesterday = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-        
-        return f.string(from: yesterday!)
-    }
-
 }

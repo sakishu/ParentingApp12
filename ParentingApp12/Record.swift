@@ -12,7 +12,7 @@ import RealmSwift
 class Record: Object{
     static let realm = try! Realm()
 
-    
+    @objc dynamic var date = ""
     @objc dynamic var title = ""
     @objc dynamic var nowTime = ""
     @objc private var _buttonImage: UIImage? = nil
@@ -39,24 +39,15 @@ class Record: Object{
     override static func ignoredProperties() -> [String] {
         return ["buttonImage", "_buttonImage"]
     }
+    
+    
     func save() {
         try! Record.realm.write{
             Record.realm.add(self)
         }
     }
-
-    
 }
 
-//extension Data{
-    
-  //  public func toImage() -> UIImage{
-    //    guard  let image = UIImage(data: self) else {
-      //      print("PNGデータをイメージに変換できませんでした")
-        //    return UIImage()
-        //}
-        //return image
-    //}
-    
-//}
+
+
 
