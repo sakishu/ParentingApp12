@@ -67,11 +67,11 @@ class DatePopUpViewController: UIViewController {
 
        let myAge2 = Int(Age)//秒齢
        let myAge3 = Double(myAge2)
-       let myAge4 = Int(myAge2/60/60/24)//日齢
-       let myAge5 = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
+        _ = Int(myAge2/60/60/24)//日齢
+        _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
 
        let calendar = Calendar(identifier: .gregorian)
-       var timeStamp = Date(timeInterval: TimeInterval(myAge3), since: now )
+        let timeStamp = Date(timeInterval: TimeInterval(myAge3), since: now )
       let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now)
       birthdayLabel = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
         

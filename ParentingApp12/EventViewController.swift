@@ -14,11 +14,12 @@ let h2 = UIScreen.main.bounds.size.height
 //スケジュール内容入力テキスト
 let eventText = UITextView(frame: CGRect(x: (w2 - 300) / 2, y: 100, width: 300, height: 200))
 
+
 //日付フォーム(UIDatePickerを使用)
 let y = UIDatePicker(frame: CGRect(x: 0, y: 300, width: w2, height: 300))
 //日付表示
 let y_text = UILabel(frame: CGRect(x: (w2 - 300) / 2, y: 570, width: 300, height: 20))
-class EventViewController: UIViewController {
+class EventViewController: UIViewController,UITextFieldDelegate {
     var date: String!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +95,11 @@ class EventViewController: UIViewController {
         dismiss(animated: true, completion: nil)
 
     }
-
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // キーボードを閉じる
+        eventText.resignFirstResponder()
+        return true
+    }
 }
 

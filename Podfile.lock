@@ -2,11 +2,11 @@ PODS:
   - CalculateCalendarLogic (0.3.0)
   - FSCalendar (2.8.1)
   - JBDatePicker (1.2.5)
-  - Realm (4.3.1):
-    - Realm/Headers (= 4.3.1)
-  - Realm/Headers (4.3.1)
-  - RealmSwift (4.3.1):
-    - Realm (= 4.3.1)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
 
 DEPENDENCIES:
   - CalculateCalendarLogic
@@ -26,8 +26,8 @@ SPEC CHECKSUMS:
   CalculateCalendarLogic: cd5b2c706a8628bb924c5ee9d05c4f61bdbaf390
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   JBDatePicker: 0e791c8a79c49b0d37decea28ba147515bf5cfca
-  Realm: 31dc40934081ef740f60feedc46d88473cbfeb40
-  RealmSwift: b5199e9a41f67b99f51acf6874a6166f5fbe93d1
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
 
 PODFILE CHECKSUM: 97422e9ff695f37aefadd9e72ac45018a4420af3
 

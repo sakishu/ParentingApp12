@@ -26,6 +26,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet var tomorrowLabel: UIBarButtonItem!
     
     @IBOutlet var babyImage: UIImageView!
+    
 //RegistrationViewControllerで入力されたニックネームを受け取る変数
     var name = ""
 //選択画像受取
@@ -37,12 +38,13 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var todoItems: Results<Record>!
 
-    var now = Date().addingTimeInterval(0)
+    var selectedDate = Date().addingTimeInterval(32400)
     
     let defaults = UserDefaults.standard
     
     let sexImage: UIImage? = nil
     
+    var now = Date().addingTimeInterval(0)
     
     
     
@@ -76,10 +78,13 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         f.timeStyle = .none
         f.locale = Locale(identifier: "ja_JP")
 
+        selectedDate = Date(timeInterval: 60 * 60 * -24, since: selectedDate)
+        
         now = Date(timeInterval: 60 * 60 * -24, since: now)
         
         labelToday.title = f.string(from: now)
         
+        self.tableView.reloadData()
     }
 //タップすると表示の日付から１日
     @IBAction func buttonTomorrow(_ sender: Any) {
@@ -88,122 +93,79 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         f.timeStyle = .none
         f.locale = Locale(identifier: "ja_JP")
         
+        selectedDate = Date(timeInterval: 60 * 60 * 24, since: selectedDate)
+        
         now = Date(timeInterval: 60 * 60 * 24, since: now)
         
         labelToday.title = f.string(from: now)
+        
+        self.tableView.reloadData()
     }
 //以下育児状況記録用のボタン
     @IBAction func wakeUpButton(_ sender: Any) {
         let record = Record()
-        record.date = labelToday.title!
+        record.date = String(describing:selectedDate)
         record.title = "起きる"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "smile")
         record.save()
-        
-        //インスタンス取得
-        let realm = try! Realm()
-        
-        try! realm.write {
-            realm.add(record)
-        }
         self.tableView.reloadData()
-        
     }
     
     @IBAction func sleepButton(_ sender: Any) {
-        
+     
+
         let record = Record()
-        record.date = labelToday.title!
+        record.date = String(describing:selectedDate)
         record.title = "寝る"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "sleep")
         record.save()
-        
-        //インスタンス取得
-        let realm = try! Realm()
-        
-        try! realm.write {
-            realm.add(record)
-        }
         self.tableView.reloadData()
-    
     }
     
     @IBAction func peepButton(_ sender: Any) {
         
         let record = Record()
-        record.date = labelToday.title!
+        record.date = String(describing:selectedDate)
         record.title = "うんち"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "peep")
         record.save()
-        
-        //インスタンス取得
-        let realm = try! Realm()
-        
-        try! realm.write {
-            realm.add(record)
-        }
         self.tableView.reloadData()
-    
     }
     
     @IBAction func urineButton(_ sender: Any) {
         
         let record = Record()
-        record.date = labelToday.title!
+        record.date = String(describing:selectedDate)
         record.title = "おしっこ"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "diapers")
         record.save()
-        
-        //インスタンス取得
-        let realm = try! Realm()
-        
-        try! realm.write {
-            realm.add(record)
-        }
         self.tableView.reloadData()
-    
     }
     
     @IBAction func milkButton(_ sender: Any) {
         
         let record = Record()
-        record.date = labelToday.title!
+        record.date = String(describing:selectedDate)
         record.title = "ミルク"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "milk")
         record.save()
-        
-        //インスタンス取得
-        let realm = try! Realm()
-        
-        try! realm.write {
-            realm.add(record)
-        }
         self.tableView.reloadData()
-    
     }
     
     @IBAction func feedButton(_ sender: Any) {
         
         let record = Record()
-        record.date = labelToday.title!
+        record.date = String(describing:selectedDate)
         record.title = "授乳"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "breastfeed")
         record.save()
-        
-        //インスタンス取得
-        let realm = try! Realm()
-        
-        try! realm.write {
-            realm.add(record)
-        }
         self.tableView.reloadData()
-    
     }
     
 //画面が表示される前に実行される処理
@@ -233,7 +195,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 //セル数宣言
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let realm = try! Realm()
+        _ = try! Realm()
         return todoItems.count
     }
     
@@ -245,23 +207,27 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let object = todoItems[indexPath.row]
         var result = realm.objects(Record.self)
 
-        result = result.filter("date = '\(labelToday.title)'")
+        result = result.filter("date = '\(String(describing: selectedDate))'")
 
-               for rd in result {
+        for rd in result {
 
-                if rd.date == labelToday.title {
+            if rd.date == String(describing: selectedDate) {
+             record.title = rd.title
 
-                    record.title = rd.title
+             record.nowTime = rd.nowTime
 
-                    record.nowTime = rd.nowTime
-
-                    record.buttonImage = rd.buttonImage
-
-                   }
-               }
+             record.buttonImage = rd.buttonImage
+                print(rd.date)
+            }
+        }
+        
         cell.bindData(text: object.title, label: object.nowTime, image: object.buttonImage!)
         return cell
         }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -322,7 +288,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         f.dateStyle = .full
         f.timeStyle = .none
         f.locale = Locale(identifier: "ja_JP")
-        var now = Date().addingTimeInterval(0)
+        let now = Date().addingTimeInterval(0)
 
         let yesterday = Date(timeInterval: 60 * 60 * -24, since: now)
         return f.string(from: yesterday)

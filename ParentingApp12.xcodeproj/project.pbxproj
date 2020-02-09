@@ -15,6 +15,7 @@
 		2441939223A9E8E200A6CBA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441939123A9E8E200A6CBA1 /* SceneDelegate.swift */; };
 		2441939723A9E8E200A6CBA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2441939523A9E8E200A6CBA1 /* Main.storyboard */; };
 		2441939923A9E8E400A6CBA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2441939823A9E8E400A6CBA1 /* Assets.xcassets */; };
+		24492CC623EA8B1F00765DC8 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24492CC523EA8B1F00765DC8 /* SettingTableViewController.swift */; };
 		244A01BD23D5B06400A2B92A /* DatePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A01BC23D5B06400A2B92A /* DatePopUpViewController.swift */; };
 		244D6FAD23BA078A004FE502 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244D6FAC23BA078A004FE502 /* Record.swift */; };
 		2455264023DE8A3C00AF9B76 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455263F23DE8A3C00AF9B76 /* CalendarViewController.swift */; };
@@ -41,6 +42,7 @@
 		2441939623A9E8E200A6CBA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2441939823A9E8E400A6CBA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2441939D23A9E8E400A6CBA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24492CC523EA8B1F00765DC8 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		244A01BC23D5B06400A2B92A /* DatePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePopUpViewController.swift; sourceTree = "<group>"; };
 		244D6FAC23BA078A004FE502 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		2455263F23DE8A3C00AF9B76 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +54,7 @@
 		246742A123ADAB7C00C343D6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		246742A323AE4BC700C343D6 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		24ABACE623B4815100F6EFDB /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		24D12AC823B656EB00F4F612 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		24D12AC823B656EB00F4F612 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		2A57B695FC728875E98B3486 /* Pods_ParentingApp12.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentingApp12.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F4C375108226144E36E13D5 /* Pods-ParentingApp12.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentingApp12.release.xcconfig"; path = "Target Support Files/Pods-ParentingApp12/Pods-ParentingApp12.release.xcconfig"; sourceTree = "<group>"; };
 		BBF78EF625B3A81955A005BC /* Pods-ParentingApp12.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentingApp12.debug.xcconfig"; path = "Target Support Files/Pods-ParentingApp12/Pods-ParentingApp12.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				244A01BC23D5B06400A2B92A /* DatePopUpViewController.swift */,
 				2455263F23DE8A3C00AF9B76 /* CalendarViewController.swift */,
 				2455264123DE8A6200AF9B76 /* SettimgViewController.swift */,
+				24492CC523EA8B1F00765DC8 /* SettingTableViewController.swift */,
 				2407AEC723E1C29D0021CA87 /* EventViewController.swift */,
 				245864CF23C1F3E8000A8F89 /* TableViewCell.xib */,
 				2441939523A9E8E200A6CBA1 /* Main.storyboard */,
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24492CC623EA8B1F00765DC8 /* SettingTableViewController.swift in Sources */,
 				24ABACE723B4815100F6EFDB /* RegistrationViewController.swift in Sources */,
 				2441939023A9E8E200A6CBA1 /* AppDelegate.swift in Sources */,
 				240D10C223C7765800514AC2 /* TabBarController.swift in Sources */,
@@ -380,6 +384,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -403,7 +408,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GNV8C54NL3;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = ParentingApp12/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,6 +430,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GNV8C54NL3;
 				INFOPLIST_FILE = ParentingApp12/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
