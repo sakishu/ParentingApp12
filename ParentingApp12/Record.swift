@@ -12,7 +12,7 @@ import RealmSwift
 class Record: Object{
     static let realm = try! Realm()
 
-    @objc dynamic var date = ""
+    @objc dynamic var date = Date()
     @objc dynamic var title = ""
     @objc dynamic var nowTime = ""
     @objc private var _buttonImage: UIImage? = nil

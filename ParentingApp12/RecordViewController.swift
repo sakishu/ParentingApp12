@@ -10,7 +10,8 @@ import UIKit
 import RealmSwift
 
 class RecordViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate {
-    let record = Record()
+    
+    lazy var realm = try! Realm()
     
     @IBOutlet var tableView: UITableView!
     
@@ -50,19 +51,27 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var calendar = Calendar.current
+            calendar.timeZone = NSTimeZone.local
+        let date1 = calendar.startOfDay(for: selectedDate)
+        
+        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
+        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)
+//2020-02-12 07:40:21 +0000 時間表示形式
+        
 //ライトモード設定
         self.overrideUserInterfaceStyle = .light
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        let realm = try! Realm()
-        todoItems = realm.objects(Record.self)
-        tableView.reloadData()
+        
 //日付表示
         labelToday.title = getToday()
-        
+        selectedDate = Date().addingTimeInterval(32400)
         birthdayLabel.text = birthdayLabel2
+        
         
 //realmデータ確認用
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -84,7 +93,13 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         labelToday.title = f.string(from: now)
         
-        self.tableView.reloadData()
+        let calendar = Calendar.current
+        let date1 = calendar.startOfDay(for: selectedDate)
+        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
+        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)
+    print(date1,"date1")
+            print(date2!,"date2")
+        tableView.reloadData()
     }
 //タップすると表示の日付から１日
     @IBAction func buttonTomorrow(_ sender: Any) {
@@ -99,73 +114,77 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         labelToday.title = f.string(from: now)
         
-        self.tableView.reloadData()
+        let calendar = Calendar.current
+        let date1 = calendar.startOfDay(for: selectedDate)
+        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
+        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)
+        
+        tableView.reloadData()
     }
 //以下育児状況記録用のボタン
     @IBAction func wakeUpButton(_ sender: Any) {
         let record = Record()
-        record.date = String(describing:selectedDate)
+        record.date = selectedDate
         record.title = "起きる"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "smile")
         record.save()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     @IBAction func sleepButton(_ sender: Any) {
      
-
         let record = Record()
-        record.date = String(describing:selectedDate)
+        record.date = selectedDate
         record.title = "寝る"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "sleep")
         record.save()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     @IBAction func peepButton(_ sender: Any) {
         
         let record = Record()
-        record.date = String(describing:selectedDate)
+        record.date = selectedDate
         record.title = "うんち"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "peep")
         record.save()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     @IBAction func urineButton(_ sender: Any) {
         
         let record = Record()
-        record.date = String(describing:selectedDate)
+        record.date = selectedDate
         record.title = "おしっこ"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "diapers")
         record.save()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     @IBAction func milkButton(_ sender: Any) {
         
         let record = Record()
-        record.date = String(describing:selectedDate)
+        record.date = selectedDate
         record.title = "ミルク"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "milk")
         record.save()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     @IBAction func feedButton(_ sender: Any) {
         
         let record = Record()
-        record.date = String(describing:selectedDate)
+        record.date = selectedDate
         record.title = "授乳"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "breastfeed")
         record.save()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
 //画面が表示される前に実行される処理
@@ -186,44 +205,48 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         //      取得した性別画像を表示
                 babyImage.image = sexImage
         
+      
+        var calendar = Calendar.current
+            calendar.timeZone = NSTimeZone.local
+        let date1 = calendar.startOfDay(for: selectedDate)
+        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
+        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)
         tableView.reloadData()
-        
-       
-
     }
     
 //セル数宣言
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        _ = try! Realm()
         return todoItems.count
     }
     
 //セル表示
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TableViewCell
-        
-        let realm = try! Realm()
+            
+        /*let calendar = Calendar.current
+        let date1 = calendar.startOfDay(for: selectedDate)
+        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
+        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)*/
+ //       print(date1,"date1")
+   //     print(date2!,"date2")
         let object = todoItems[indexPath.row]
-        var result = realm.objects(Record.self)
-
-        result = result.filter("date = '\(String(describing: selectedDate))'")
-
-        for rd in result {
-
-            if rd.date == String(describing: selectedDate) {
-             record.title = rd.title
-
-             record.nowTime = rd.nowTime
-
-             record.buttonImage = rd.buttonImage
-                print(rd.date)
-            }
-        }
         
-        cell.bindData(text: object.title, label: object.nowTime, image: object.buttonImage!)
+            cell.ParentLabel.text = object.title
+            cell.TimeLabel.text = object.nowTime
+            cell.ButtonImage.image = object.buttonImage!
+               
+             
+/*             for rd in result {
+                 if rd.date >= date1 && rd.date < date2! {
+                  record.title = rd.title
+                  record.nowTime = rd.nowTime
+                  record.buttonImage = rd.buttonImage
+                 }
+             
+     //        cell.bindData(text: object.title, label: object.nowTime, image: object.buttonImage!)
+        }*/
         return cell
-        }
+             }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -280,29 +303,5 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         f.locale = Locale(identifier: "ja_JP")
         let now = Date()
         return f.string(from: now)
-    }
-    
-    func getYesterday() -> String{
-        
-        let f = DateFormatter()
-        f.dateStyle = .full
-        f.timeStyle = .none
-        f.locale = Locale(identifier: "ja_JP")
-        let now = Date().addingTimeInterval(0)
-
-        let yesterday = Date(timeInterval: 60 * 60 * -24, since: now)
-        return f.string(from: yesterday)
-    }
-        
-    
-    func getTomorrow() -> String{
-        
-        let f = DateFormatter()
-        f.dateStyle = .full
-        f.timeStyle = .none
-        f.locale = Locale(identifier: "ja_JP")
-        _ = Date()
-        let tomorrow = Date(timeIntervalSinceNow: 60 * 60 * 24)
-        return f.string(from: tomorrow)
     }
 }

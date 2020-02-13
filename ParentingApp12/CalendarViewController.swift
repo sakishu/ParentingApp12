@@ -55,9 +55,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                 view.addSubview(labelDate)
             }
         }
-
-
-
     }
     
     //画面遷移(スケジュール登録ページ)
