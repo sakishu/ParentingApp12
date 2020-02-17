@@ -20,7 +20,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     //カレンダー処理(スケジュール表示処理)
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
 
-        labelTitle.text = "主なスケジュール"
+        labelTitle.text = "スケジュール"
         labelTitle.backgroundColor = UIColor(red: 1.0, green: 0, blue: 1.0, alpha: 0.2)
         view.addSubview(labelTitle)
 
@@ -62,6 +62,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let SecondController = storyboard.instantiateViewController(withIdentifier: "Insert")
         present(SecondController, animated: true, completion: nil)
+        
     }
     //スケジュール内容
     let labelDate = UILabel(frame: CGRect(x: 5, y: 580, width: 400, height: 50))
@@ -76,6 +77,21 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         //カレンダー設定
         self.dateView.dataSource = self
         self.dateView.delegate = self
+        self.dateView.appearance.headerDateFormat = "YYYY年MM月"
+        self.dateView.calendarWeekdayView.weekdayLabels[0].text = "日"
+        self.dateView.calendarWeekdayView.weekdayLabels[1].text = "月"
+        self.dateView.calendarWeekdayView.weekdayLabels[2].text = "火"
+        self.dateView.calendarWeekdayView.weekdayLabels[3].text = "水"
+        self.dateView.calendarWeekdayView.weekdayLabels[4].text = "木"
+        self.dateView.calendarWeekdayView.weekdayLabels[5].text = "金"
+        self.dateView.calendarWeekdayView.weekdayLabels[6].text = "土"
+        self.dateView.calendarWeekdayView.weekdayLabels[0].textColor = UIColor.red
+        self.dateView.calendarWeekdayView.weekdayLabels[1].textColor = UIColor.black
+        self.dateView.calendarWeekdayView.weekdayLabels[2].textColor = UIColor.black
+        self.dateView.calendarWeekdayView.weekdayLabels[3].textColor = UIColor.black
+        self.dateView.calendarWeekdayView.weekdayLabels[4].textColor = UIColor.black
+        self.dateView.calendarWeekdayView.weekdayLabels[5].textColor = UIColor.black
+        self.dateView.calendarWeekdayView.weekdayLabels[6].textColor = UIColor.blue
         self.dateView.today = nil
         self.dateView.tintColor = .red
         self.view.backgroundColor = .white

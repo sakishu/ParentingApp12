@@ -43,7 +43,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     let defaults = UserDefaults.standard
     
-    let sexImage: UIImage? = nil
+    let sexImage: UIImage? = UIImage()
     
     var now = Date().addingTimeInterval(0)
     
@@ -62,7 +62,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let d = String(format: "%02d", day)
         let da = "\(year)/\(m)/\(d)"
         //スケジュール取得
-        todoItems = realm.objects(Record.self).filter("date = '\(da)'")
+        todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
 
         
         
@@ -91,6 +91,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         print(Realm.Configuration.defaultConfiguration.fileURL!)
 
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier:"RecordCell")
+        tableView.reloadData()
     }
     
 
@@ -115,7 +116,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let d = String(format: "%02d", day)
         let da = "\(year)/\(m)/\(d)"
         //スケジュール取得
-        todoItems = realm.objects(Record.self).filter("date = '\(da)'")
+        todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
 
         
  /*       let calendar = Calendar.current
@@ -146,7 +147,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let m = String(format: "%02d", month)
         let d = String(format: "%02d", day)
         let da = "\(year)/\(m)/\(d)"
-        todoItems = realm.objects(Record.self).filter("date = '\(da)'")
+        todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
 /*        let calendar = Calendar.current
         let date1 = calendar.startOfDay(for: selectedDate)
         let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
@@ -263,17 +264,15 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         //userDefaultsから参照(Data)
                 let sexData = defaults.data(forKey: "image")
                 //DataをImageに変換
-                let sexImage = UIImage(data: sexData!)
-
+        let babyImageView = UIImage(data: sexData!)
                 //入力した誕生日を取得
         birthdayLabel.text = defaults.string(forKey: "birthdaySetting")
-            
         //入力されたニックネームを表示
                 babyName.title = defaults.string(forKey: "Name")
                 
         //      babyImage.image = babyImageView
         //      取得した性別画像を表示
-                babyImage.image = sexImage
+                babyImage.image = babyImageView
         
       let tmpDate = Calendar(identifier: .gregorian)
       let year = tmpDate.component(.year, from: selectedDate)
@@ -283,14 +282,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
       let d = String(format: "%02d", day)
       let da = "\(year)/\(m)/\(d)"
       //スケジュール取得
-      todoItems = realm.objects(Record.self).filter("date = '\(da)'")
-
-        
- /*       var calendar = Calendar.current
-            calendar.timeZone = NSTimeZone.local
-        let date1 = calendar.startOfDay(for: selectedDate)
-        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
-        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)*/
+        todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
         tableView.reloadData()
     }
     
@@ -303,28 +295,11 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TableViewCell
             
-        /*let calendar = Calendar.current
-        let date1 = calendar.startOfDay(for: selectedDate)
-        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
-        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)*/
- //       print(date1,"date1")
-   //     print(date2!,"date2")
         let object = todoItems[indexPath.row]
-        
             cell.ParentLabel.text = object.title
             cell.TimeLabel.text = object.nowTime
             cell.ButtonImage.image = object.buttonImage!
-               
-             
-/*             for rd in result {
-                 if rd.date >= date1 && rd.date < date2! {
-                  record.title = rd.title
-                  record.nowTime = rd.nowTime
-                  record.buttonImage = rd.buttonImage
-                 }
-             
      //        cell.bindData(text: object.title, label: object.nowTime, image: object.buttonImage!)
-        }*/
         return cell
              }
     
@@ -339,8 +314,10 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 
 
     func tableView(_ tableView: UITableView,commit editingStyle: UITableViewCell.EditingStyle,forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete{
             if let object = todoItems?[indexPath.row] {
+            
             tableView.reloadData()
             let realm = try! Realm()
             try! realm.write{

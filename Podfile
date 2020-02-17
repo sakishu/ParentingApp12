@@ -7,7 +7,6 @@ target 'ParentingApp12' do
   use_frameworks!
 
 pod 'RealmSwift'
-pod 'JBDatePicker'
 pod 'FSCalendar'
 pod 'CalculateCalendarLogic'
 

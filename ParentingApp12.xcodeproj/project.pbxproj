@@ -10,8 +10,9 @@
 		2407AEC623E1BE6A0021CA87 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407AEC523E1BE6A0021CA87 /* Event.swift */; };
 		2407AEC823E1C29D0021CA87 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407AEC723E1C29D0021CA87 /* EventViewController.swift */; };
 		240D10C223C7765800514AC2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10C123C7765800514AC2 /* TabBarController.swift */; };
-		2430006423F5B33400BBC479 /* CalculateCalendarLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006323F5B33400BBC479 /* CalculateCalendarLogic.framework */; };
-		24405ADE23AD0F0A00EC8293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24405ADD23AD0F0A00EC8293 /* LaunchScreen.storyboard */; };
+		2430006823F5BB1100BBC479 /* FSCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006723F5BB1100BBC479 /* FSCalendar.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2430006A23F5BB2200BBC479 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006923F5BB2200BBC479 /* RealmSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2430006E23F5BB5500BBC479 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006D23F5BB5500BBC479 /* Realm.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2441939023A9E8E200A6CBA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441938F23A9E8E200A6CBA1 /* AppDelegate.swift */; };
 		2441939223A9E8E200A6CBA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441939123A9E8E200A6CBA1 /* SceneDelegate.swift */; };
 		2441939723A9E8E200A6CBA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2441939523A9E8E200A6CBA1 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		246742A023ADA83300C343D6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2467429F23ADA83300C343D6 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		246742A223ADAB7C00C343D6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246742A123ADAB7C00C343D6 /* FirstViewController.swift */; };
 		246742A423AE4BC700C343D6 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246742A323AE4BC700C343D6 /* PrivacyPolicyViewController.swift */; };
+		2478727223F82F4D00860F1B /* CalculateCalendarLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006323F5B33400BBC479 /* CalculateCalendarLogic.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		24ABACE723B4815100F6EFDB /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABACE623B4815100F6EFDB /* RegistrationViewController.swift */; };
 		24D12AC923B656EB00F4F612 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D12AC823B656EB00F4F612 /* RecordViewController.swift */; };
 		8F6E2B0787F2BDFBCAD622C4 /* Pods_ParentingApp12.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A57B695FC728875E98B3486 /* Pods_ParentingApp12.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -37,8 +39,10 @@
 		2407AEC723E1C29D0021CA87 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		240D10C123C7765800514AC2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2430006323F5B33400BBC479 /* CalculateCalendarLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculateCalendarLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2430006723F5BB1100BBC479 /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2430006923F5BB2200BBC479 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2430006D23F5BB5500BBC479 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24390BA123F5893400D6AE8E /* CalculateCalendarLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CalculateCalendarLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		24405ADD23AD0F0A00EC8293 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2441938C23A9E8E200A6CBA1 /* ParentingApp12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentingApp12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2441938F23A9E8E200A6CBA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2441939123A9E8E200A6CBA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +72,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2430006423F5B33400BBC479 /* CalculateCalendarLogic.framework in Frameworks */,
+				2478727223F82F4D00860F1B /* CalculateCalendarLogic.framework in Frameworks */,
+				2430006E23F5BB5500BBC479 /* Realm.framework in Frameworks */,
+				2430006A23F5BB2200BBC479 /* RealmSwift.framework in Frameworks */,
+				2430006823F5BB1100BBC479 /* FSCalendar.framework in Frameworks */,
 				246742A023ADA83300C343D6 /* MessageUI.framework in Frameworks */,
 				8F6E2B0787F2BDFBCAD622C4 /* Pods_ParentingApp12.framework in Frameworks */,
 			);
@@ -117,7 +124,6 @@
 				245864CF23C1F3E8000A8F89 /* TableViewCell.xib */,
 				2441939523A9E8E200A6CBA1 /* Main.storyboard */,
 				2441939823A9E8E400A6CBA1 /* Assets.xcassets */,
-				24405ADD23AD0F0A00EC8293 /* LaunchScreen.storyboard */,
 				2441939D23A9E8E400A6CBA1 /* Info.plist */,
 			);
 			path = ParentingApp12;
@@ -126,6 +132,9 @@
 		2467429E23ADA83300C343D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2430006D23F5BB5500BBC479 /* Realm.framework */,
+				2430006923F5BB2200BBC479 /* RealmSwift.framework */,
+				2430006723F5BB1100BBC479 /* FSCalendar.framework */,
 				2430006323F5B33400BBC479 /* CalculateCalendarLogic.framework */,
 				24390BA123F5893400D6AE8E /* CalculateCalendarLogic.framework */,
 				2467429F23ADA83300C343D6 /* MessageUI.framework */,
@@ -204,7 +213,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				245864D123C2060F000A8F89 /* TableViewCell.xib in Resources */,
-				24405ADE23AD0F0A00EC8293 /* LaunchScreen.storyboard in Resources */,
 				2441939923A9E8E400A6CBA1 /* Assets.xcassets in Resources */,
 				2441939723A9E8E200A6CBA1 /* Main.storyboard in Resources */,
 			);
@@ -412,6 +420,7 @@
 			baseConfigurationReference = BBF78EF625B3A81955A005BC /* Pods-ParentingApp12.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GNV8C54NL3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -431,7 +440,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
 				);
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = "No optimization[-Onone]";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/CalculateCalendarLogic/CalculateCalendarLogic.framework/Headers\"",
@@ -460,6 +469,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomo.ParentingApp12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REEXPORTED_LIBRARY_PATHS = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -490,6 +500,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
 				);
+				GCC_OPTIMIZATION_LEVEL = "No optimization[-Onone]";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/CalculateCalendarLogic/CalculateCalendarLogic.framework/Headers\"",

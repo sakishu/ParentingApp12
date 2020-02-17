@@ -44,23 +44,28 @@ class EventViewController: UIViewController,UITextFieldDelegate {
 
         //「書く!」ボタン
         let eventInsert = UIButton(frame: CGRect(x: (w2 - 200) / 2, y: 600, width: 200, height: 50))
-        eventInsert.setTitle("書く！", for: UIControl.State())
+        eventInsert.setTitle("保存", for: UIControl.State())
         eventInsert.setTitleColor(.white, for: UIControl.State())
-        eventInsert.backgroundColor = .orange
+        eventInsert.backgroundColor = UIColor(red: 1.0, green: 0, blue: 1.0, alpha: 0.2)
         eventInsert.addTarget(self, action: #selector(saveEvent(_:)), for: .touchUpInside)
         view.addSubview(eventInsert)
 
         //「戻る!」ボタン
         let backBtn = UIButton(frame: CGRect(x: (w - 200) / 2, y: h - 150, width: 200, height: 30))
         backBtn.setTitle("戻る", for: UIControl.State())
-        backBtn.setTitleColor(.orange, for: UIControl.State())
+        backBtn.setTitleColor(UIColor(red: 1.0, green: 0, blue: 1.0, alpha: 0.2), for: UIControl.State())
         backBtn.backgroundColor = .white
         backBtn.layer.cornerRadius = 10.0
-        backBtn.layer.borderColor = UIColor.orange.cgColor
+        backBtn.layer.borderColor = UIColor(red: 1.0, green: 0, blue: 1.0, alpha: 0.2).cgColor
         backBtn.layer.borderWidth = 1.0
         backBtn.addTarget(self, action: #selector(onbackClick(_:)), for: .touchUpInside)
         view.addSubview(backBtn)
 
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        y_text.text = formatter.string(from: y.date)
+        view.addSubview(y_text)
+        
     }
 
     //画面遷移(カレンダーページ)

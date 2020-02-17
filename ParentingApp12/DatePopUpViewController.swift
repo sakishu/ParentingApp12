@@ -26,7 +26,7 @@ class DatePopUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+   self.overrideUserInterfaceStyle = .light
       
         
     }
@@ -80,7 +80,7 @@ class DatePopUpViewController: UIViewController {
         
         print(datePicker.date)
         print(birthdayLabel)
-//入力情報は残るが、値渡しが上手くいかない
+
       self.dismiss(animated: true, completion: nil)
         
 //値を渡せるが、先に入力した情報が消える

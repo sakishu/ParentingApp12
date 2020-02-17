@@ -15,7 +15,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet var babyName: UITextField!
     @IBOutlet var sex: UISegmentedControl!
     @IBOutlet var birthdarButton: UIButton!
-   
+    @IBOutlet var addButton: UIButton!
+    
     var textField = ""
     var sexSelect = UIImage()
     var birthday = Date()
@@ -27,6 +28,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate{
         super.viewDidLoad()
         
         babyName.delegate = self
+        
+        sex.selectedSegmentIndex = UISegmentedControl.noSegment
 
     }
     
@@ -44,7 +47,9 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate{
             case 2: sexSelect = UIImage(named: "cherry")!
                     let data = sexSelect.pngData()
                     defaults.set(data, forKey: "image")
-            default: print("error")
+            default: sexSelect = UIImage(named: "cherry")!
+            let data = sexSelect.pngData()
+            defaults.set(data, forKey: "image")
     }
 }
     
@@ -59,27 +64,26 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate{
             if let tabVC = segue.destination as? UITabBarController,
                 let navVC = tabVC.viewControllers?.first as? UINavigationController,
                 let destVC = navVC.viewControllers.first as? RecordViewController {
-                destVC.name = self.babyName.text!
+                destVC.name = self.babyName.text ?? ""
                 destVC.babyImageView = self.sexSelect
                 destVC.birthdayLabel2 = birthdayLabel1
-                
+                //入力した名前を保存
+                defaults.set(babyName.text, forKey: "Name")
+                textField = babyName.text ?? ""
             }
         }
     }
-    
+
     @IBAction func add(_ sender: Any) {
         
-        self.performSegue(withIdentifier: "tabBar", sender: self)
-    
-        textField = babyName.text!
-        
-        print(birthdayLabel1)
-        
-//入力した名前を保存
-        defaults.set(babyName.text, forKey: "Name")
-        
+         //     self.performSegue(withIdentifier: "tabBar", sender: self)
+            
+          //      textField = babyName.text ?? ""
+                
+        //入力した名前を保存
+        //        defaults.set(babyName.text, forKey: "Name")
     }
-
+    
     
 //キーボード閉じる
    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
