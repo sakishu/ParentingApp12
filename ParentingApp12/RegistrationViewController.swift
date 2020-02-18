@@ -67,6 +67,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate{
                 destVC.name = self.babyName.text ?? ""
                 destVC.babyImageView = self.sexSelect
                 destVC.birthdayLabel2 = birthdayLabel1
+                destVC.birthdaySelect = birthday
                 //入力した名前を保存
                 defaults.set(babyName.text, forKey: "Name")
                 textField = babyName.text ?? ""

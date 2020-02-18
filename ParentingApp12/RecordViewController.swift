@@ -47,8 +47,23 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var now = Date().addingTimeInterval(0)
     
+    //誕生日受け取り変数
+    var birthdaySelect = Date()
+    var now1 = Date().addingTimeInterval(0)
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        let AgeData:Int = defaults.integer(forKey: "myAge2")
+        let selectDate = defaults.object(forKey: "selectDate") as? Date
+        let myAge3 = Double(AgeData)
+        let myAge4 = Int(AgeData/60/60/24)//日齢
+          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
+        let calendar = Calendar(identifier: .gregorian)
+        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
+        print(birthdaySelect)
+        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
+        birthdayLabel.text = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
         
         let tmpDate = Calendar(identifier: .gregorian)
         let year = tmpDate.component(.year, from: selectedDate)
@@ -68,12 +83,9 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
-        
 //日付表示
         labelToday.title = getToday()
-        birthdayLabel.text = birthdayLabel2
-        
+//        birthdayLabel.text = birthdayLabel2
         
 //realmデータ確認用
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -85,6 +97,16 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 
 //タップすると表示の日付から−１日
     @IBAction func buttonYesterday(_ sender: Any) {
+        let AgeData:Int = defaults.integer(forKey: "myAge2")
+        let selectDate = defaults.object(forKey: "selectDate") as? Date
+        let myAge3 = Double(AgeData)
+        let myAge4 = Int(AgeData/60/60/24)//日齢
+          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
+        let calendar = Calendar(identifier: .gregorian)
+        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
+        now1 = Date(timeInterval: 60 * 60 * -24, since: now1)
+        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
+        birthdayLabel.text = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
         let f = DateFormatter()
         f.dateStyle = .full
         f.timeStyle = .none
@@ -105,6 +127,16 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
 //タップすると表示の日付から１日
     @IBAction func buttonTomorrow(_ sender: Any) {
+        let AgeData:Int = defaults.integer(forKey: "myAge2")
+        let selectDate = defaults.object(forKey: "selectDate") as? Date
+        let myAge3 = Double(AgeData)
+        let myAge4 = Int(AgeData/60/60/24)//日齢
+          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
+        let calendar = Calendar(identifier: .gregorian)
+        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
+        now1 = Date(timeInterval: 60 * 60 * 24, since: now1)
+        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
+        birthdayLabel.text = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
         let f = DateFormatter()
         f.dateStyle = .full
         f.timeStyle = .none
@@ -228,12 +260,22 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 //画面が表示される前に実行される処理
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let AgeData:Int = defaults.integer(forKey: "myAge2")
+        let selectDate = defaults.object(forKey: "selectDate") as? Date
+        let myAge3 = Double(AgeData)
+        let myAge4 = Int(AgeData/60/60/24)//日齢
+          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
+        let calendar = Calendar(identifier: .gregorian)
+        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
+        print(birthdaySelect)
+        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
+        birthdayLabel.text = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
         //userDefaultsから参照(Data)
                 let sexData = defaults.data(forKey: "image")
                 //DataをImageに変換
         let babyImageView = UIImage(data: sexData!)
                 //入力した誕生日を取得
-        birthdayLabel.text = defaults.string(forKey: "birthdaySetting")
+//        birthdayLabel.text = defaults.string(forKey: "birthdaySetting")
         //入力されたニックネームを表示
                 babyName.title = defaults.string(forKey: "Name")
         //      取得した性別画像を表示
