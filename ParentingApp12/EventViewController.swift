@@ -19,10 +19,12 @@ let eventText = UITextView(frame: CGRect(x: (w2 - 300) / 2, y: 100, width: 300, 
 let y = UIDatePicker(frame: CGRect(x: 0, y: 300, width: w2, height: 300))
 //日付表示
 let y_text = UILabel(frame: CGRect(x: (w2 - 300) / 2, y: 570, width: 300, height: 20))
-class EventViewController: UIViewController,UITextFieldDelegate {
+class EventViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     var date: String!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        eventText.delegate = self
 
         //スケジュール内容入力テキスト設定
         eventText.text = ""
@@ -101,10 +103,9 @@ class EventViewController: UIViewController,UITextFieldDelegate {
 
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // キーボードを閉じる
-        eventText.resignFirstResponder()
-        return true
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
+    
 }
 

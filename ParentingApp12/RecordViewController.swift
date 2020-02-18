@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class RecordViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate {
+class RecordViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     lazy var realm = try! Realm()
     
@@ -47,10 +47,6 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     var now = Date().addingTimeInterval(0)
     
-    
-  
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,17 +57,10 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let m = String(format: "%02d", month)
         let d = String(format: "%02d", day)
         let da = "\(year)/\(m)/\(d)"
+        
         //スケジュール取得
         todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
 
-        
-        
-/*        var calendar = Calendar.current
-            calendar.timeZone = NSTimeZone.local
-        let date1 = calendar.startOfDay(for: selectedDate)
-        
-        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
-        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)*/
 //2020-02-12 07:40:21 +0000 時間表示形式
         
 //ライトモード設定
@@ -83,7 +72,6 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         
 //日付表示
         labelToday.title = getToday()
-        
         birthdayLabel.text = birthdayLabel2
         
         
@@ -101,13 +89,9 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         f.dateStyle = .full
         f.timeStyle = .none
         f.locale = Locale(identifier: "ja_JP")
-
         selectedDate = Date(timeInterval: 60 * 60 * -24, since: selectedDate)
-        
         now = Date(timeInterval: 60 * 60 * -24, since: now)
-        
         labelToday.title = f.string(from: now)
-        
         let tmpDate = Calendar(identifier: .gregorian)
         let year = tmpDate.component(.year, from: selectedDate)
         let month = tmpDate.component(.month, from: selectedDate)
@@ -117,14 +101,6 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let da = "\(year)/\(m)/\(d)"
         //スケジュール取得
         todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
-
-        
- /*       let calendar = Calendar.current
-        let date1 = calendar.startOfDay(for: selectedDate)
-        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
-        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)
-    print(date1,"date1")
-            print(date2!,"date2")*/
         tableView.reloadData()
     }
 //タップすると表示の日付から１日
@@ -133,13 +109,9 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         f.dateStyle = .full
         f.timeStyle = .none
         f.locale = Locale(identifier: "ja_JP")
-        
         selectedDate = Date(timeInterval: 60 * 60 * 24, since: selectedDate)
-        
         now = Date(timeInterval: 60 * 60 * 24, since: now)
-        
         labelToday.title = f.string(from: now)
-        
         let tmpDate = Calendar(identifier: .gregorian)
         let year = tmpDate.component(.year, from: selectedDate)
         let month = tmpDate.component(.month, from: selectedDate)
@@ -148,11 +120,6 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let d = String(format: "%02d", day)
         let da = "\(year)/\(m)/\(d)"
         todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
-/*        let calendar = Calendar.current
-        let date1 = calendar.startOfDay(for: selectedDate)
-        let date2 = calendar.date(byAdding: .day, value: 1, to: date1)
-        todoItems = realm.objects(Record.self).filter("date >= %@ AND date < %@", date1, date2!)*/
-        
         tableView.reloadData()
     }
 //以下育児状況記録用のボタン
@@ -269,8 +236,6 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         birthdayLabel.text = defaults.string(forKey: "birthdaySetting")
         //入力されたニックネームを表示
                 babyName.title = defaults.string(forKey: "Name")
-                
-        //      babyImage.image = babyImageView
         //      取得した性別画像を表示
                 babyImage.image = babyImageView
         

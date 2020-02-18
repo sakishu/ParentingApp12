@@ -10,13 +10,16 @@
 		2407AEC623E1BE6A0021CA87 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407AEC523E1BE6A0021CA87 /* Event.swift */; };
 		2407AEC823E1C29D0021CA87 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407AEC723E1C29D0021CA87 /* EventViewController.swift */; };
 		240D10C223C7765800514AC2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10C123C7765800514AC2 /* TabBarController.swift */; };
-		2430006823F5BB1100BBC479 /* FSCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006723F5BB1100BBC479 /* FSCalendar.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		2430006A23F5BB2200BBC479 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006923F5BB2200BBC479 /* RealmSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		2430006E23F5BB5500BBC479 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006D23F5BB5500BBC479 /* Realm.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2441939023A9E8E200A6CBA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441938F23A9E8E200A6CBA1 /* AppDelegate.swift */; };
 		2441939223A9E8E200A6CBA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441939123A9E8E200A6CBA1 /* SceneDelegate.swift */; };
 		2441939723A9E8E200A6CBA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2441939523A9E8E200A6CBA1 /* Main.storyboard */; };
 		2441939923A9E8E400A6CBA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2441939823A9E8E400A6CBA1 /* Assets.xcassets */; };
+		2443E12923FAF9210038AD23 /* CalculateCalendarLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006323F5B33400BBC479 /* CalculateCalendarLogic.framework */; };
+		2443E12C23FAF9230038AD23 /* FSCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006723F5BB1100BBC479 /* FSCalendar.framework */; };
+		2443E12E23FAF9250038AD23 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2467429F23ADA83300C343D6 /* MessageUI.framework */; };
+		2443E13023FAF9270038AD23 /* Pods_ParentingApp12.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A57B695FC728875E98B3486 /* Pods_ParentingApp12.framework */; };
+		2443E13223FAF9290038AD23 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006D23F5BB5500BBC479 /* Realm.framework */; };
+		2443E13423FAF92A0038AD23 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006923F5BB2200BBC479 /* RealmSwift.framework */; };
 		24492CC623EA8B1F00765DC8 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24492CC523EA8B1F00765DC8 /* SettingTableViewController.swift */; };
 		244A01BD23D5B06400A2B92A /* DatePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A01BC23D5B06400A2B92A /* DatePopUpViewController.swift */; };
 		244D6FAD23BA078A004FE502 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244D6FAC23BA078A004FE502 /* Record.swift */; };
@@ -25,13 +28,10 @@
 		2455264823DF040D00AF9B76 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455264723DF040D00AF9B76 /* SplashViewController.swift */; };
 		245864D023C1F3E8000A8F89 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245864CE23C1F3E8000A8F89 /* TableViewCell.swift */; };
 		245864D123C2060F000A8F89 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245864CF23C1F3E8000A8F89 /* TableViewCell.xib */; };
-		246742A023ADA83300C343D6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2467429F23ADA83300C343D6 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		246742A223ADAB7C00C343D6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246742A123ADAB7C00C343D6 /* FirstViewController.swift */; };
 		246742A423AE4BC700C343D6 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246742A323AE4BC700C343D6 /* PrivacyPolicyViewController.swift */; };
-		2478727223F82F4D00860F1B /* CalculateCalendarLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2430006323F5B33400BBC479 /* CalculateCalendarLogic.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		24ABACE723B4815100F6EFDB /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABACE623B4815100F6EFDB /* RegistrationViewController.swift */; };
 		24D12AC923B656EB00F4F612 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D12AC823B656EB00F4F612 /* RecordViewController.swift */; };
-		8F6E2B0787F2BDFBCAD622C4 /* Pods_ParentingApp12.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A57B695FC728875E98B3486 /* Pods_ParentingApp12.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,12 +72,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2478727223F82F4D00860F1B /* CalculateCalendarLogic.framework in Frameworks */,
-				2430006E23F5BB5500BBC479 /* Realm.framework in Frameworks */,
-				2430006A23F5BB2200BBC479 /* RealmSwift.framework in Frameworks */,
-				2430006823F5BB1100BBC479 /* FSCalendar.framework in Frameworks */,
-				246742A023ADA83300C343D6 /* MessageUI.framework in Frameworks */,
-				8F6E2B0787F2BDFBCAD622C4 /* Pods_ParentingApp12.framework in Frameworks */,
+				2443E13223FAF9290038AD23 /* Realm.framework in Frameworks */,
+				2443E12923FAF9210038AD23 /* CalculateCalendarLogic.framework in Frameworks */,
+				2443E13423FAF92A0038AD23 /* RealmSwift.framework in Frameworks */,
+				2443E12C23FAF9230038AD23 /* FSCalendar.framework in Frameworks */,
+				2443E12E23FAF9250038AD23 /* MessageUI.framework in Frameworks */,
+				2443E13023FAF9270038AD23 /* Pods_ParentingApp12.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,7 +467,7 @@
 				INFOPLIST_FILE = ParentingApp12/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tomo.ParentingApp12;
+				PRODUCT_BUNDLE_IDENTIFIER = ParentingApp12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REEXPORTED_LIBRARY_PATHS = "";
@@ -527,7 +527,7 @@
 				INFOPLIST_FILE = ParentingApp12/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tomo.ParentingApp12;
+				PRODUCT_BUNDLE_IDENTIFIER = ParentingApp12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REEXPORTED_LIBRARY_PATHS = "";
 				SWIFT_VERSION = 5.0;
