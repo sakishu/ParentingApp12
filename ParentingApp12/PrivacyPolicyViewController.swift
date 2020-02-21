@@ -16,32 +16,16 @@ class PrivacyPolicyViewController: UIViewController {
         let safariController = SFSafariViewController(url: url)
         present(safariController, animated: true, completion: nil)
         
-        }
+    }
 
     @IBAction func PrivacyButton(_ sender: Any) {
         guard let url = URL(string: "https://github.com/sakishu/ParentingApp12/commit/1cefab04a77bc22c4c2a25f55266e5a15ec51bbb#diff-76e54fc4af9757bcee8e9b0a55ea1514") else { return }
         let safariController = SFSafariViewController(url: url)
         present(safariController, animated: true, completion: nil)
     }
-    
-        
-    
-        
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-    
-        
-        
-        
-        
+        self.overrideUserInterfaceStyle = .light
     }
-    
-
-    
-
 }

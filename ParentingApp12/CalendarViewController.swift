@@ -16,14 +16,11 @@ let w = UIScreen.main.bounds.size.width
 let h = UIScreen.main.bounds.size.height
 
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
-    
     //カレンダー処理(スケジュール表示処理)
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
-
         labelTitle.text = "スケジュール"
         labelTitle.backgroundColor = UIColor(red: 1.0, green: 0, blue: 1.0, alpha: 0.2)
         view.addSubview(labelTitle)
-
         //予定がある場合、スケジュールをDBから取得・表示する。
         //無い場合、「スケジュールはありません」と表示。
         labelDate.text = "スケジュールはありません"
@@ -36,7 +33,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         let day = tmpDate.component(.day, from: date)
         let m = String(format: "%02d", month)
         let d = String(format: "%02d", day)
-
         let da = "\(year)/\(m)/\(d)"
 
         //クリックしたら、日付が表示される。
@@ -61,6 +57,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     @objc func onClick(_: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let SecondController = storyboard.instantiateViewController(withIdentifier: "Insert")
+        SecondController.modalPresentationStyle = .fullScreen
         present(SecondController, animated: true, completion: nil)
         
     }
@@ -74,6 +71,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     let Date = UILabel(frame: CGRect(x: 5, y: 430, width: 200, height: 100))
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         //カレンダー設定
         self.dateView.dataSource = self
         self.dateView.delegate = self
@@ -96,24 +94,47 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         self.dateView.tintColor = .red
         self.view.backgroundColor = .white
         dateView.backgroundColor = .white
+        dateView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(dateView)
-
+        dateView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        dateView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        dateView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
+        dateView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.4).isActive = true
+        dateView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80).isActive = true
+        
         //日付表示設定
         Date.text = ""
         Date.font = UIFont.systemFont(ofSize: 60.0)
         Date.textColor = .black
+        Date.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(Date)
-
-        //「主なスケジュール」表示設定
+        Date.leadingAnchor.constraint(equalTo: self.dateView.leadingAnchor, constant: 0).isActive = true
+        Date.topAnchor.constraint(equalTo: self.dateView.bottomAnchor, constant: 0).isActive = true
+        
+        //「スケジュール」表示設定
         labelTitle.text = ""
         labelTitle.textAlignment = .center
         labelTitle.font = UIFont.systemFont(ofSize: 20.0)
+        labelTitle.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelTitle)
+        
+        labelTitle.topAnchor.constraint(equalTo: self.Date.bottomAnchor, constant: 0).isActive = true
+        labelTitle.centerXAnchor.constraint(equalTo: self.Date.centerXAnchor).isActive = true
+        labelTitle.widthAnchor.constraint(equalTo: self.Date.widthAnchor, multiplier: 1).isActive = true
+        labelTitle.heightAnchor.constraint(equalTo: self.labelTitle.widthAnchor, multiplier: 0.25).isActive = true
 
         //スケジュール内容表示設定
         labelDate.text = ""
         labelDate.font = UIFont.systemFont(ofSize: 18.0)
+        labelDate.lineBreakMode = .byCharWrapping
+        labelDate.numberOfLines = 0
+        labelDate.sizeToFit()
+        labelDate.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelDate)
+        labelDate.topAnchor.constraint(equalTo: self.labelTitle.bottomAnchor, constant: 0).isActive = true
+        labelDate.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        labelDate.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
+        
 
         //スケジュール追加ボタン
         let addBtn = UIButton(frame: CGRect(x: w - 110, y: h - 200, width: 60, height: 60))
@@ -123,8 +144,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         addBtn.layer.cornerRadius = 30.0
         addBtn.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
         view.addSubview(addBtn)
-
-
     }
 
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)

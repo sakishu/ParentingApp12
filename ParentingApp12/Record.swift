@@ -11,7 +11,6 @@ import RealmSwift
 
 class Record: Object{
     static let realm = try! Realm()
-
     @objc dynamic var date = ""
     @objc dynamic var title = ""
     @objc dynamic var nowTime = ""

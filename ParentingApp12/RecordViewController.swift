@@ -10,11 +10,8 @@ import UIKit
 import RealmSwift
 
 class RecordViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
-    
     lazy var realm = try! Realm()
-    
     @IBOutlet var tableView: UITableView!
-    
 //日付表示用タイトル
     @IBOutlet var labelToday: UINavigationItem!
 //赤ちゃんの名前を表示するタイトル
@@ -25,28 +22,18 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet var yesterdayLabel: UIBarButtonItem!
 //翌日ボタン
     @IBOutlet var tomorrowLabel: UIBarButtonItem!
-    
     @IBOutlet var babyImage: UIImageView!
-    
 //RegistrationViewControllerで入力されたニックネームを受け取る変数
     var name = ""
 //選択画像受取
     var babyImageView:UIImage = UIImage()
-    
     var birthdayLabel2 = ""
-    
     var babyBirthday = Date()
-    
     var todoItems: Results<Record>!
-
     var selectedDate = Date()
-    
     let defaults = UserDefaults.standard
-    
     let sexImage: UIImage? = UIImage()
-    
     var now = Date().addingTimeInterval(0)
-    
     //誕生日受け取り変数
     var birthdaySelect = Date()
     var now1 = Date().addingTimeInterval(0)
@@ -64,7 +51,6 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         print(birthdaySelect)
         let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
         birthdayLabel.text = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
-        
         let tmpDate = Calendar(identifier: .gregorian)
         let year = tmpDate.component(.year, from: selectedDate)
         let month = tmpDate.component(.month, from: selectedDate)
@@ -72,24 +58,14 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let m = String(format: "%02d", month)
         let d = String(format: "%02d", day)
         let da = "\(year)/\(m)/\(d)"
-        
         //スケジュール取得
         todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
-
-//2020-02-12 07:40:21 +0000 時間表示形式
-        
-//ライトモード設定
-        self.overrideUserInterfaceStyle = .light
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
 //日付表示
         labelToday.title = getToday()
-//        birthdayLabel.text = birthdayLabel2
-        
 //realmデータ確認用
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier:"RecordCell")
         tableView.reloadData()
     }
@@ -273,7 +249,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         //userDefaultsから参照(Data)
                 let sexData = defaults.data(forKey: "image")
                 //DataをImageに変換
-        let babyImageView = UIImage(data: sexData!)
+        let babyImageView = UIImage(data: sexData ?? Data())
                 //入力した誕生日を取得
 //        birthdayLabel.text = defaults.string(forKey: "birthdaySetting")
         //入力されたニックネームを表示
