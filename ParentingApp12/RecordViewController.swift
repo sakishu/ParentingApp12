@@ -41,25 +41,9 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let AgeData:Int = defaults.integer(forKey: "myAge2")
-        let selectDate = defaults.object(forKey: "selectDate") as? Date
-        let myAge3 = Double(AgeData)
-        let myAge4 = Int(AgeData/60/60/24)//日齢
-          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
-        let calendar = Calendar(identifier: .gregorian)
-        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
-        print(birthdaySelect)
-        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
-        birthdayLabel.text = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: selectedDate)
-        let month = tmpDate.component(.month, from: selectedDate)
-        let day = tmpDate.component(.day, from: selectedDate)
-        let m = String(format: "%02d", month)
-        let d = String(format: "%02d", day)
-        let da = "\(year)/\(m)/\(d)"
+        birthdayLabel.text = birthday()
         //スケジュール取得
-        todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
+        todoItems = getParenting()
         self.tableView.dataSource = self
         self.tableView.delegate = self
 //日付表示
@@ -73,16 +57,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 
 //タップすると表示の日付から−１日
     @IBAction func buttonYesterday(_ sender: Any) {
-        let AgeData:Int = defaults.integer(forKey: "myAge2")
-        let selectDate = defaults.object(forKey: "selectDate") as? Date
-        let myAge3 = Double(AgeData)
-        let myAge4 = Int(AgeData/60/60/24)//日齢
-          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
-        let calendar = Calendar(identifier: .gregorian)
-        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
-        now1 = Date(timeInterval: 60 * 60 * -24, since: now1)
-        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
-        birthdayLabel.text = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
+        birthdayLabel.text = birthdayYesterday()
         let f = DateFormatter()
         f.dateStyle = .full
         f.timeStyle = .none
@@ -90,29 +65,13 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         selectedDate = Date(timeInterval: 60 * 60 * -24, since: selectedDate)
         now = Date(timeInterval: 60 * 60 * -24, since: now)
         labelToday.title = f.string(from: now)
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: selectedDate)
-        let month = tmpDate.component(.month, from: selectedDate)
-        let day = tmpDate.component(.day, from: selectedDate)
-        let m = String(format: "%02d", month)
-        let d = String(format: "%02d", day)
-        let da = "\(year)/\(m)/\(d)"
         //スケジュール取得
-        todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
+        todoItems = getParenting()
         tableView.reloadData()
     }
 //タップすると表示の日付から１日
     @IBAction func buttonTomorrow(_ sender: Any) {
-        let AgeData:Int = defaults.integer(forKey: "myAge2")
-        let selectDate = defaults.object(forKey: "selectDate") as? Date
-        let myAge3 = Double(AgeData)
-        let myAge4 = Int(AgeData/60/60/24)//日齢
-          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
-        let calendar = Calendar(identifier: .gregorian)
-        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
-        now1 = Date(timeInterval: 60 * 60 * 24, since: now1)
-        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
-        birthdayLabel.text = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
+        birthdayLabel.text = birthdayTomorrow()
         let f = DateFormatter()
         f.dateStyle = .full
         f.timeStyle = .none
@@ -120,27 +79,14 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         selectedDate = Date(timeInterval: 60 * 60 * 24, since: selectedDate)
         now = Date(timeInterval: 60 * 60 * 24, since: now)
         labelToday.title = f.string(from: now)
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: selectedDate)
-        let month = tmpDate.component(.month, from: selectedDate)
-        let day = tmpDate.component(.day, from: selectedDate)
-        let m = String(format: "%02d", month)
-        let d = String(format: "%02d", day)
-        let da = "\(year)/\(m)/\(d)"
-        todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
+//スケジュール取得
+        todoItems = getParenting()
         tableView.reloadData()
     }
 //以下育児状況記録用のボタン
     @IBAction func wakeUpButton(_ sender: Any) {
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: selectedDate)
-        let month = tmpDate.component(.month, from: selectedDate)
-        let day = tmpDate.component(.day, from: selectedDate)
-        let m = String(format: "%02d", month)
-        let d = String(format: "%02d", day)
-        let da = "\(year)/\(m)/\(d)"
         let record = Record()
-        record.date = da
+        record.date = selected()
         record.title = "起きる"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "smile")
@@ -149,15 +95,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     @IBAction func sleepButton(_ sender: Any) {
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: selectedDate)
-        let month = tmpDate.component(.month, from: selectedDate)
-        let day = tmpDate.component(.day, from: selectedDate)
-        let m = String(format: "%02d", month)
-        let d = String(format: "%02d", day)
-        let da = "\(year)/\(m)/\(d)"
         let record = Record()
-        record.date = da
+        record.date = selected()
         record.title = "寝る"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "sleep")
@@ -166,15 +105,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     @IBAction func peepButton(_ sender: Any) {
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: selectedDate)
-        let month = tmpDate.component(.month, from: selectedDate)
-        let day = tmpDate.component(.day, from: selectedDate)
-        let m = String(format: "%02d", month)
-        let d = String(format: "%02d", day)
-        let da = "\(year)/\(m)/\(d)"
         let record = Record()
-        record.date = da
+        record.date = selected()
         record.title = "うんち"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "peep")
@@ -183,15 +115,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     @IBAction func urineButton(_ sender: Any) {
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: selectedDate)
-        let month = tmpDate.component(.month, from: selectedDate)
-        let day = tmpDate.component(.day, from: selectedDate)
-        let m = String(format: "%02d", month)
-        let d = String(format: "%02d", day)
-        let da = "\(year)/\(m)/\(d)"
         let record = Record()
-        record.date = da
+        record.date = selected()
         record.title = "おしっこ"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "diapers")
@@ -200,15 +125,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     @IBAction func milkButton(_ sender: Any) {
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: selectedDate)
-        let month = tmpDate.component(.month, from: selectedDate)
-        let day = tmpDate.component(.day, from: selectedDate)
-        let m = String(format: "%02d", month)
-        let d = String(format: "%02d", day)
-        let da = "\(year)/\(m)/\(d)"
         let record = Record()
-        record.date = da
+        record.date = selected()
         record.title = "ミルク"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "milk")
@@ -217,15 +135,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     @IBAction func feedButton(_ sender: Any) {
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: selectedDate)
-        let month = tmpDate.component(.month, from: selectedDate)
-        let day = tmpDate.component(.day, from: selectedDate)
-        let m = String(format: "%02d", month)
-        let d = String(format: "%02d", day)
-        let da = "\(year)/\(m)/\(d)"
         let record = Record()
-        record.date = da
+        record.date = selected()
         record.title = "授乳"
         record.nowTime = getTime()
         record.buttonImage = UIImage(named: "breastfeed")
@@ -236,16 +147,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
 //画面が表示される前に実行される処理
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let AgeData:Int = defaults.integer(forKey: "myAge2")
-        let selectDate = defaults.object(forKey: "selectDate") as? Date
-        let myAge3 = Double(AgeData)
-        let myAge4 = Int(AgeData/60/60/24)//日齢
-          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
-        let calendar = Calendar(identifier: .gregorian)
-        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
-        print(birthdaySelect)
-        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
-        birthdayLabel.text = String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
+        birthdayLabel.text = birthday()
         //userDefaultsから参照(Data)
                 let sexData = defaults.data(forKey: "image")
                 //DataをImageに変換
@@ -257,15 +159,8 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         //      取得した性別画像を表示
                 babyImage.image = babyImageView
         
-      let tmpDate = Calendar(identifier: .gregorian)
-      let year = tmpDate.component(.year, from: selectedDate)
-      let month = tmpDate.component(.month, from: selectedDate)
-      let day = tmpDate.component(.day, from: selectedDate)
-      let m = String(format: "%02d", month)
-      let d = String(format: "%02d", day)
-      let da = "\(year)/\(m)/\(d)"
       //スケジュール取得
-        todoItems = realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
+        todoItems = getParenting()
         tableView.reloadData()
     }
     
@@ -325,7 +220,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
 //現時刻取得
-    func getToday() -> String{
+    private func getToday() -> String{
         
         let f = DateFormatter()
         f.dateStyle = .full
@@ -335,7 +230,7 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         return f.string(from: now)
     }
     
-    func getTime() -> String{
+    private func getTime() -> String{
         
         let f = DateFormatter()
         f.dateStyle = .none
@@ -344,4 +239,71 @@ class RecordViewController: UIViewController,UITableViewDelegate,UITableViewData
         let now = Date()
         return f.string(from: now)
     }
+    
+    func birthday () -> String {
+        let AgeData:Int = defaults.integer(forKey: "myAge2")
+        let selectDate = defaults.object(forKey: "selectDate") as? Date
+        let myAge3 = Double(AgeData)
+        let myAge4 = Int(AgeData/60/60/24)//日齢
+          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
+        let calendar = Calendar(identifier: .gregorian)
+        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
+        print(birthdaySelect)
+        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
+        return String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
+    }
+    
+    func birthdayYesterday () -> String {
+        let AgeData:Int = defaults.integer(forKey: "myAge2")
+        let selectDate = defaults.object(forKey: "selectDate") as? Date
+        let myAge3 = Double(AgeData)
+        let myAge4 = Int(AgeData/60/60/24)//日齢
+          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
+        let calendar = Calendar(identifier: .gregorian)
+        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
+        print(birthdaySelect)
+        now1 = Date(timeInterval: 60 * 60 * -24, since: now1)
+        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
+        return String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
+    }
+    
+    func birthdayTomorrow () -> String {
+        let AgeData:Int = defaults.integer(forKey: "myAge2")
+        let selectDate = defaults.object(forKey: "selectDate") as? Date
+        let myAge3 = Double(AgeData)
+        let myAge4 = Int(AgeData/60/60/24)//日齢
+          _ = Int(myAge3/60/60/24/365.24)//年齢、端数の切り捨て
+        let calendar = Calendar(identifier: .gregorian)
+        let timeStamp = Date(timeInterval: TimeInterval(myAge4), since: selectDate ?? Date())
+        print(birthdaySelect)
+        now1 = Date(timeInterval: 60 * 60 * 24, since: now1)
+        let elapsedComps = calendar.dateComponents([.year, .month, .day], from: timeStamp, to: now1)
+        return String(format: "生後%d年%dヶ月%d日", elapsedComps.year!, elapsedComps.month!, elapsedComps.day!)
+    }
+    
+    func getParenting () -> Results<Record>!{
+        
+        let tmpDate = Calendar(identifier: .gregorian)
+        let year = tmpDate.component(.year, from: selectedDate)
+        let month = tmpDate.component(.month, from: selectedDate)
+        let day = tmpDate.component(.day, from: selectedDate)
+        let m = String(format: "%02d", month)
+        let d = String(format: "%02d", day)
+        let da = "\(year)/\(m)/\(d)"
+        //スケジュール取得
+        return realm.objects(Record.self).filter("date = '\(da)'").sorted(byKeyPath: "nowTime", ascending: true)
+        
+    }
+    
+    func selected () -> String {
+        let tmpDate = Calendar(identifier: .gregorian)
+        let year = tmpDate.component(.year, from: selectedDate)
+        let month = tmpDate.component(.month, from: selectedDate)
+        let day = tmpDate.component(.day, from: selectedDate)
+        let m = String(format: "%02d", month)
+        let d = String(format: "%02d", day)
+        return "\(year)/\(m)/\(d)"
+    }
+    
 }
+
